@@ -25,7 +25,7 @@ and $c$, where $c$ is the hypotenuse we know that
 $$c^2 = a^2 + b^2.$$
 But can we be convinced that this is in fact true?
 
-\subsection*{Setup}
+\subsection*{Proof}
 First let there be a generic right angled triangle with side lengths
 $a$, $b$, and $c$ wwith $c$ as the hypotenuse.
 
@@ -84,7 +84,35 @@ From this four of these triangles we can construct a square.
 \end{figure}
 
 Each side of this square is the $a + b$, this means that the
-area of the square is given by $(a + b)^2$. But we can also 
-treat the area of the square as 
+area of the whole square ($A$) is given by 
+$$A = (a + b)\times(a + b),$$ 
+or
+$$A = (a + b)^2.$$ 
+We can also calculate the area of the large square using 
+the individual parts. The formula for the area of a triangle
+is $\frac{1}{2}bh$ so the area of each of the four right
+angled triangles is,
+$$A_t = \frac{1}{2}ab.$$
+The other component of the larger square, is the area of 
+the smaller square within (we should probably prove this
+is a square, but that can be an exercise for the reader), which is
+$$A_s = c^2,$$
+This means that the total area is also given by
+\begin{align*}
+A &= 4\times A_t + A_s, \\
+A &= 4\times\frac{1}{2}ab + c^2, \\
+A &= 2ab + c^2.
+\end{align*}
+We can equate these two different calculations of the area
+$$(a + b)^2 = 2ab + c^2,$$
+then simplify each side of the equation. First expand the LHS
+$$a^2 + 2ab + b^2 = 2ab + c^2,$$
+then we can subtract $2ab$ from both sides,
+\begin{align*}
+a^2 + 2ab + b^2 - 2ab &= 2ab + c^2 - 2ab, \\
+a^2 + b^2 &= c^2.
+\end{align*}
+As such, we are done, we have shown that any generic right angled
+triangle must adhere to Pythagoras' formula.
 
 \end{document}
