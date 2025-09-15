@@ -15,6 +15,9 @@
 \setlength{\parindent}{0pt}
 
 \begin{document}
+
+\renewcommand{\labelenumii}{\alph{enumii})}
+
 \large
 \section*{Substitution Word Problems}
 
@@ -91,7 +94,25 @@ Finally we might write a short sentence to answer the question,
 angle sum ($S$) of an $n$ sided polygon is $S = 180(n - 2)$.
 What would be the interior angle sum of a heptagon (polygon with
 7 sides)?
-\textsc{Solution}: 
+
+\textsc{Solution}: First we have the two variables involved
+in this question
+\begin{itemize}
+\item $S$ represents the sum of all the angles inside the 
+    polygon.
+\item $n$ is the number of sides that the polygon has.
+\end{itemize}
+Since we know the polygon is a heptagon and has 7 sides 
+this tells us that 
+$$n = 7.$$
+We can then substitute this into the equation and evaluate
+the RHS to determine the value of $S$,
+\begin{align*}
+S &= 180(n - 2), \\
+S &= 180(7 - 2), \\
+S &= 180\times5, \\
+S &= 900.
+\end{align*}
 
 \vspace{3mm}
 \hrule
@@ -104,11 +125,29 @@ What would be the interior angle sum of a heptagon (polygon with
 \newpage
 \subsection*{Question Bank}
 
-\textsc{Note}: Any questions where you get a decimal as an answer
-can be rounded to 2 decimal places.
+\textsc{Note}: Any questions where you get a decimal or fraction 
+as an answer can be rounded to 2 decimal places or left as 
+an exact value.
 
 \begin{enumerate}
-\item .
+\item The in order to calculate the perimeter ($P$) of a rectangle 
+    you need to know the length ($l$) and width ($w$). The formula
+    to calculate the perimeter is $P = 2l + 2w$. What would be
+    the perimeter of a rectangle that is 6cm wide and 9cm long?
+
+\item The formula to calculate the area of a trapezium ($A$) is
+    $\displaystyle A = \frac{a + b}{2}h$. In this formula $a$ and 
+    $b$ are the lengths of the two parallel sides, and $h$ is the 
+    perpendicular height between them.
+    \begin{enumerate}
+    \item Find the area of a trapezium with parallel side lengths 
+        of 4cm and 7cm, and a perpendicular height of 6cm.
+    \item Using this alternate formula 
+        $\displaystyle A = 0.5(ah + bh)$, calculate the 
+        area of the trapezium from part a).
+    \item Which formula $\displaystyle A = \frac{a + b}{2}h$
+        or 
+    \end{enumerate}
 
 \end{enumerate}
 
@@ -116,7 +155,7 @@ can be rounded to 2 decimal places.
 \subsection*{Answers}
 
 \begin{enumerate}
-\item .
+\item 30cm % rectangle perimeter question
 \end{enumerate}
 
 \end{document}
