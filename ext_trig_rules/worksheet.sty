@@ -1,0 +1,26 @@
+\NeedsTeXFormat{LaTeX2e}
+
+\ProvidesPackage{worksheet}[15/9/2025 Dylan's custom maths worksheet style]
+
+% Begin preamble
+
+\setlength{\parindent}{0pt}
+
+\renewcommand{\labelenumii}{\alph{enumii})}
+\renewcommand{\labelenumiii}{\roman{enumiii})}
+
+\everymath{\displaystyle}
+
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\geometry{
+    total={150mm,237mm},
+    left=30mm,
+    top=30mm,
+}
+\usepackage{amsmath}
+\usepackage{multicol}
+
+% End preamble
+
+\endinput
