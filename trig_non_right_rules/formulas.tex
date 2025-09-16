@@ -2,8 +2,29 @@
 
 \usepackage{worksheet}
 
+\usepackage{tikz}
+\usepackage{tkz-euclide}
+
 \begin{document}
 \section*{Non-Right Trigonometry Rules}
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+    \coordinate (A) at (0, 0);
+    \coordinate (B) at (5, 1);
+    \coordinate (C) at (3, 4);
+
+    \draw (A) node[below left]{\Large $A$} 
+           -- node[below]{\Large $c$}
+          (B) node[below right]{\Large $B$} 
+           -- node[above right]{\Large $a$} 
+          (C) node[above]{\Large $C$} 
+           -- node[above left]{\Large $b$} (A);
+    \tkzMarkAngle[size=0.6](C,B,A)
+    \tkzMarkAngle[size=0.6](A,C,B)
+    \tkzMarkAngle[size=0.6](B,A,C)
+\end{tikzpicture}
+\end{figure}
 \LARGE
 
 \textsc{Sine Rule}
