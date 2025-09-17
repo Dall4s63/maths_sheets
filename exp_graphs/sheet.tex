@@ -2,19 +2,61 @@
 
 \usepackage{worksheet}
 
+\usepackage{cellspace}
+
 \usepackage{tikz}
 
 \begin{document}
 
-\large
+% \large
 \section*{Sheet Title}
 
 \subsection*{Example Problems}
 
-\textsc{Example 1}: 
+\textsc{Example 1}: For the following equation, fill out 
+the table of values.
+$$y = 3^x.$$
+\begin{tabular}{|l|l|}
+\hline
+x & y \\
+\hline
+-3 & \\
+\hline
+-2 & \\
+\hline
+-1 & \\
+\hline
+0 & \\
+\hline
+1 & \\
+\hline
+2 & \\
+\hline
+3 & \\
+\hline
+\end{tabular}
 
 \textsc{Solution}: 
 
+\begin{tabular}{|Sl|Sl|}
+\hline
+x & y \\
+\hline
+-3 & $3^{-3} = \frac{1}{3^3} = \frac{1}{27} \approx 0.037$ \\
+\hline
+-2 & $3^{-2} = \frac{1}{3^2} = \frac{1}{9} \approx 0.111$ \\
+\hline
+-1 & $3^{-1} = \frac{1}{3^1} = \frac{1}{3} \approx 0.333$ \\
+\hline
+0 & $3^0 = 1$ \\
+\hline
+1 & $3^1 = 3$ \\
+\hline
+2 & $3^2 = 9$ \\
+\hline
+3 & $3^3 = 27$ \\
+\hline
+\end{tabular}
 \vspace{3mm}
 \hrule
 \vspace{3mm}
@@ -39,7 +81,8 @@ as an answer can be rounded to 2 decimal places or left as
 an exact value.
 
 \begin{enumerate}
-\item 
+\item Graph of $y = 2^x$
+
     \begin{tikzpicture}%[domain=0.25:4]
         \draw[very thin,color=gray] (-0.1,-1.1) grid (3.9,3.9);
         \draw[thick,->] (0,-1.1) -- (0,4.2);
