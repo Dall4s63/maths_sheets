@@ -40,6 +40,13 @@ an exact value.
 
 \begin{enumerate}
 \item 
+    \begin{tikzpicture}%[domain=0.25:4]
+        \draw[very thin,color=gray] (-0.1,-1.1) grid (3.9,3.9);
+        \draw[thick,->] (0,-1.1) -- (0,4.2);
+        \draw[thick,->] (-0.1,0) -- (4.2,0);
+
+        \draw[thick,domain=0:1.5] plot (\x,{exp(\x * ln(2))}) node[above right] {$y = \frac{1}{x}$};
+    \end{tikzpicture}
 \end{enumerate}
 
 \newpage
