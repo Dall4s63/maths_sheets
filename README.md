@@ -14,8 +14,11 @@ is based on what I personally feel would be good.
 Much of these sheets are a work in progress, but the following
 are the sheets that feel more complete.
 
+- Plain cartesian planes are in `cartesian_plane_blank`.
+  Large plane on page 1 and four small planes on page 2.
 - Simple quadratic equations are in `simple_quadr_eqns`,
   `sheet.pdf` has normal questions, `ext.pdf` is incomplete.
 - Formulas for non right trig are in `trig_non_right_rules`.
 - Straightforward substitution word problems are in
   `subs_word_probs`.
+- Some exponential plotting questions are in `exp_graphs`.

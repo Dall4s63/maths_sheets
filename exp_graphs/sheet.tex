@@ -4,6 +4,8 @@
 
 \usepackage{cellspace}
 
+\usepackage[x11names]{xcolor}
+
 \usepackage{tikz}
 
 \begin{document}
@@ -11,73 +13,6 @@
 % \large
 \section*{Sheet Title}
 
-\subsection*{Example Problems}
-
-\textsc{Example 1}: For the following equation, fill out 
-the table of values.
-$$y = 3^x.$$
-\begin{tabular}{|l|l|}
-\hline
-x & y \\
-\hline
--3 & \\
-\hline
--2 & \\
-\hline
--1 & \\
-\hline
-0 & \\
-\hline
-1 & \\
-\hline
-2 & \\
-\hline
-3 & \\
-\hline
-\end{tabular}
-
-\vspace{3mm}
-
-\textsc{Solution}: 
-
-\vspace{3mm}
-
-\begin{tabular}{|Sl|Sl|}
-\hline
-x & y \\
-\hline
--3 & $3^{-3} = \frac{1}{3^3} = \frac{1}{27} \approx 0.037$ \\
-\hline
--2 & $3^{-2} = \frac{1}{3^2} = \frac{1}{9} \approx 0.111$ \\
-\hline
--1 & $3^{-1} = \frac{1}{3^1} = \frac{1}{3} \approx 0.333$ \\
-\hline
-0 & $3^0 = 1$ \\
-\hline
-1 & $3^1 = 3$ \\
-\hline
-2 & $3^2 = 9$ \\
-\hline
-3 & $3^3 = 27$ \\
-\hline
-\end{tabular}
-\vspace{3mm}
-\hrule
-\vspace{3mm}
-
-\textsc{Example 2}: 
-
-\textsc{Solution}: 
-
-\vspace{3mm}
-\hrule
-\vspace{3mm}
-
-\textsc{Example 3}: 
-
-\textsc{Solution}: 
-
-\newpage
 \subsection*{Question Bank}
 
 \textsc{Note}: Any questions where you get a decimal or fraction 
@@ -85,15 +20,75 @@ as an answer can be rounded to 2 decimal places or left as
 an exact value.
 
 \begin{enumerate}
-\item Graph of $y = 2^x$
+\item For each of the following equations, fill out the corresponding
+    table of values, plot the points on a Cartesian plane, and 
+    draw a graph of the curve. Does the graph converge on a value 
+    as $x\to\infty$ or $x\to -\infty$?
+    \begin{enumerate}
+    \item $y = 2^x$
 
-    \begin{tikzpicture}%[domain=0.25:4]
-        \draw[very thin,color=gray] (-0.1,-1.1) grid (3.9,3.9);
-        \draw[thick,->] (0,-1.1) -- (0,4.2);
-        \draw[thick,->] (-0.1,0) -- (4.2,0);
+        \begin{tabular}{|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|}
+        \hline
+        $x$ & $-3$ & $-2$ & $-1$ & 0 & 1 & 2 & 3 \\
+        \hline
+        $y$ & & & & & & & \\[3mm]
+        \hline
+        \end{tabular}
+    \item $y = 2^{-x}$
 
-        \draw[thick,domain=0:1.5] plot (\x,{exp(\x * ln(2))}) node[above right] {$y = \frac{1}{x}$};
-    \end{tikzpicture}
+        \begin{tabular}{|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|}
+        \hline
+        $x$ & $-3$ & $-2$ & $-1$ & 0 & 1 & 2 & 3 \\
+        \hline
+        $y$ & & & & & & & \\[3mm]
+        \hline
+        \end{tabular}
+    \item $y = 2^{x - 1}$
+
+        \begin{tabular}{|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|}
+        \hline
+        $x$ & $-3$ & $-2$ & $-1$ & 0 & 1 & 2 & 3 \\
+        \hline
+        $y$ & & & & & & & \\[3mm]
+        \hline
+        \end{tabular}
+    \item $y = 2^{\frac{x}{2}}$
+
+        \begin{tabular}{|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|}
+        \hline
+        $x$ & $-6$ & $-4$ & $-2$ & 0 & 2 & 4 & 6 \\
+        \hline
+        $y$ & & & & & & & \\[3mm]
+        \hline
+        \end{tabular}
+    \end{enumerate}
+
+\item For each of the following equations create a table of values
+    and use them to graph the curves on a Cartesian plane.
+    \begin{multicols}{2}
+    \begin{enumerate}
+    \item $y = \left(\frac{1}{2}\right)^x$
+    \item $y = -3^x$
+    \item $y = 2^{x+4}$
+    \item $y = 3^x - 3$
+    \end{enumerate}
+    \end{multicols}
+\item The graphs from question 1. b) and 2. a) should look the same.
+    Based on their equations, $y = 2^{-x}$ and 
+    $y = \left(\frac{1}{2}\right)^x$ why do you think this could be
+    the case?
+\item For each of the following equations, plot a graph using 
+    a method you feel comfortable with. On the same plane plot the 
+    line of the horizontal asymptote (the value the curve converges
+    upon) and state its equation.
+    \begin{multicols}{2}
+    \begin{enumerate}
+    \item $y = 2^x - 2$
+    \item $y = -2^x + 2$
+    \item $y = 3(3^{x - 2} - 1)$
+    \item $y = \frac{2^{-x+2} + 6}{3}$
+    \end{enumerate}
+    \end{multicols}
 \end{enumerate}
 
 \newpage
@@ -101,6 +96,130 @@ an exact value.
 
 \begin{enumerate}
 \item 
+    \begin{enumerate}
+        \item 
+        \begin{tabular}{|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|}
+        \hline
+        $x$ & $-3$ & $-2$ & $-1$ & 0 & 1 & 2 & 3 \\
+        \hline
+        $y$ & $\frac{1}{8}$ & $\frac{1}{4}$ & $\frac{1}{2}$ & 1 & 2 & 4 & 8 \\
+        \hline
+        \end{tabular}
+
+        As $x\to -\infty$ the curve converges toward 0.
+
+        \item 
+        \begin{tabular}{|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|}
+        \hline
+        $x$ & $-3$ & $-2$ & $-1$ & 0 & 1 & 2 & 3 \\
+        \hline
+        $y$ & 8 & 4 & 2 & 1 & $\frac{1}{2}$ & $\frac{1}{4}$ & $\frac{1}{8}$ \\
+        \hline
+        \end{tabular}
+
+        As $x\to \infty$ the curve converges toward 0.
+
+        \item 
+        \begin{tabular}{|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|}
+        \hline
+        $x$ & $-3$ & $-2$ & $-1$ & 0 & 1 & 2 & 3 \\
+        \hline
+        $y$ & $\frac{1}{16}$ & $\frac{1}{8}$ & $\frac{1}{4}$ & $\frac{1}{2}$ & 1 & 2 & 4 \\
+        \hline
+        \end{tabular}
+
+        As $x\to -\infty$ the curve converges toward 0.
+
+        \item 
+        \begin{tabular}{|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|Sc|}
+        \hline
+        $x$ & $-6$ & $-4$ & $-2$ & 0 & 2 & 4 & 6 \\
+        \hline
+        $y$ & $\frac{1}{8}$ & $\frac{1}{4}$ & $\frac{1}{2}$ & 1 & 2 & 4 & 8 \\
+        \hline
+        \end{tabular}
+
+        As $x\to -\infty$ the curve converges toward 0.
+
+    \end{enumerate}
+
+\item
+    \begin{enumerate}
+    \item $y = \left(\frac{1}{2}\right)^x$
+
+    \begin{tikzpicture}[scale=0.5]
+        \draw[very thin,gray!25] (-4,-4) grid (4,4);
+        \draw[thick,<->] (0,-4.25) -- (0,4.25);
+        \draw[thick,<->] (-4.25,0) -- (4.25,0);
+
+        \draw[thick] (-0.1,1) -- (0.1,1) node[right] {1};
+
+        \draw[thick,domain=-2:4,<->,Green2] plot (\x,{exp(\x * ln(1/2))});
+    \end{tikzpicture}
+
+    \item $y = -3^x$
+
+    \begin{tikzpicture}[scale=0.5]
+        \draw[very thin,gray!25] (-4,-4) grid (4,4);
+        \draw[thick,<->] (0,-4.25) -- (0,4.25);
+        \draw[thick,<->] (-4.25,0) -- (4.25,0);
+
+        \draw[thick] (-0.1,-1) -- (0.1,-1) node[right] {$-1$};
+
+        \draw[thick,domain=-4:1.26,<->,Green2] plot (\x,{-exp(\x * ln(3))});
+    \end{tikzpicture}
+
+    \item $y = 2^{x+4}$
+
+    \begin{tikzpicture}[scale=0.5]
+        \draw[very thin,gray!25] (-7,-4) grid (1,4);
+        \draw[thick,<->] (0,-4.25) -- (0,4.25);
+        \draw[thick,<->] (-7.25,0) -- (1.25,0);
+
+        \draw[thick,domain=-7:-2,<->,Green2] plot (\x,{exp((\x + 4) * ln(2))});
+    \end{tikzpicture}
+
+    \item $y = 3^x - 3$
+
+    \begin{tikzpicture}[scale=0.5]
+        \draw[very thin,gray!25] (-4,-4) grid (4,4);
+        \draw[thick,<->] (0,-4.25) -- (0,4.25);
+        \draw[thick,<->] (-4.25,0) -- (4.25,0);
+
+        \draw[thick] (1,-0.1) -- (1,0.1) node[above] {1};
+        \draw[thick] (-0.1,-2) -- (0.1,-2) node[right] {$-2$};
+
+        \draw[thick,domain=-4:1.77,<->,Green2] plot (\x,{exp(\x * ln(3))-3});
+    \end{tikzpicture}
+    \end{enumerate}
+
+\item You can use index laws to show that
+    \begin{align*}
+    y &= \left(\frac{1}{2}\right)^x, \\
+      &= \frac{1^x}{2^x}, \\
+      &= \frac{1}{2^x}, \\
+      &= 2^{-x}.
+    \end{align*}
+
+\item
+    \begin{enumerate}
+    \item $y = 2^x - 2$ has an asymptote at $y = -2$
+
+    \begin{tikzpicture}[scale=0.5]
+        \draw[very thin,gray!25] (-4,-4) grid (4,4);
+        \draw[thick,<->] (0,-4.25) -- (0,4.25);
+        \draw[thick,<->] (-4.25,0) -- (4.25,0);
+
+        \draw[thick,domain=-4:2.58,<->,Green2] plot (\x,{exp(\x * ln(2))-2});
+
+        \draw[thick,<->,Firebrick2] (-4,-2) -- (4,-2) node[right] {$y = -2$};
+    \end{tikzpicture}
+
+    \item $y = -2^x + 2$
+    \item $y = 3(3^{x - 2} - 1)$
+    \item $y = \frac{2^{-x+2} + 6}{3}$
+    \end{enumerate}
+
 \end{enumerate}
 
 \end{document}
