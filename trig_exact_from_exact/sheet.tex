@@ -1,0 +1,83 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage{worksheet}
+
+\usepackage{tikz}
+\usepackage{tkz-euclide}
+
+\begin{document}
+
+\large
+\section*{Trig Exact from Exact}
+
+\subsection*{Example Problems}
+
+\textsc{Example 1}: Given that $\cos(\theta) = \frac{5}{8}$, 
+find the exact value of $\sin(\theta)$.
+
+\textsc{Solution}: Since we know that $\cos$ is the 
+ratio between the adjacent and hypotenuse, we can draw
+a triangle that represents the question.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[scale=0.75]
+    \coordinate (A) at (0, 0);
+    \coordinate (B) at (6, 0);
+    \coordinate (C) at (6,5.29);
+
+    \draw (A) -- node[below] {6} (B)
+          -- node[right] {$x$} (C)
+          -- node[above left] {8} (A);
+    \tkzMarkRightAngle[size=0.5](A,B,C);
+    \tkzMarkAngle[](B,A,C);
+    \tkzLabelAngle[pos=1.4](B,A,C){$\theta$};
+\end{tikzpicture}
+\end{figure}
+
+Now that this triangle has been drawn, we can see that
+despite not knowing the size of the angle $\theta$ we
+can find the length of the missing side using Pythagoras'
+theorem,
+\begin{align*}
+x^2 &= 8^2 - 6^2, \\
+x^2 &= 28, \\
+x &= \sqrt{28}.
+\end{align*}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[scale=0.75]
+    \coordinate (A) at (0, 0);
+    \coordinate (B) at (6, 0);
+    \coordinate (C) at (6,5.29);
+
+    \draw (A) -- node[below] {6} (B)
+          -- node[right] {$\sqrt{28}$} (C)
+          -- node[above left] {8} (A);
+    \tkzMarkRightAngle[size=0.5](A,B,C);
+    \tkzMarkAngle[](B,A,C);
+    \tkzLabelAngle[pos=1.4](B,A,C){$\theta$};
+\end{tikzpicture}
+\end{figure}
+
+Now we have the length of both the opposite side and 
+hypotenuse, we can calculate the exact value of 
+$\sin(\theta)$,
+$$\sin(\theta) = \frac{\sqrt{28}}{8}.$$
+
+\newpage
+\subsection*{Question Bank}
+
+\begin{enumerate}
+\item 
+\end{enumerate}
+
+\newpage
+\subsection*{Answers}
+
+\begin{enumerate}
+\item 
+\end{enumerate}
+
+\end{document}
