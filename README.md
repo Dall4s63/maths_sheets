@@ -24,9 +24,9 @@ are the sheets that feel more complete.
 - Some exponential plotting questions are in `exp_graphs`.
 - Exact trig ratios from other exact trig ratios are 
   in `trig_exact_from_exact`.
-- Conversion from gradient-intercept to general form for
-  line equations is in `grad_int_to_general`. These 
-  questions can also be used for graphing lines.
+- Conversion from gradient-intercept to and from general 
+  form for line equations is in `grad_int_to_general`. 
+  These questions can also be used for graphing lines.
 
 ## Planned Sheet Ideas
 
