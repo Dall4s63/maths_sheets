@@ -34,5 +34,4 @@ are the sheets that feel more complete.
 - types of triangles
 - factorising with more complex terms
 - factorising perfect square and diff of 2 squares
-- general form <-> gradient intercept form.
 - perpendicular and parallel line equations
