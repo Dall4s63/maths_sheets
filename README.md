@@ -22,12 +22,13 @@ are the sheets that feel more complete.
 - Straightforward substitution word problems are in
   `subs_word_probs`.
 - Some exponential plotting questions are in `exp_graphs`.
+- Exact trig ratios from other exact trig ratios are 
+  in `trig_exact_from_exact`.
 
 ## Planned Sheet Ideas
 
 - double time and half time wages
 - types of triangles
-- exact trig values e.g. cosA = 3/5 -> sinA -> 4/5
 - factorising with more complex terms
 - factorising perfect square and diff of 2 squares
 - general form <-> gradient intercept form.
