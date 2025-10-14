@@ -3,8 +3,10 @@
 \usepackage{worksheet}
 
 \usepackage{tikz}
-\usetikzlibrary{graphs,graphdrawing}
-\usegdlibrary{layered}
+\usetikzlibrary{graphs,graphdrawing,quotes}
+\usegdlibrary{layered,force}
+
+\newcommand{\ra}{$\to$}
 
 \begin{document}
 
@@ -13,21 +15,64 @@
 
 \subsection*{Question Bank}
 
-\textsc{Note}: Any questions where you get a decimal or fraction 
-as an answer can be rounded to 2 decimal places or left as 
-an exact value.
+\textsc{Note}: Remember that some graphs have many minimum spanning 
+trees. So if your tree looks different to a solution you can check 
+that the total of all edge weights on your tree is as small as 
+the example tree. 
 
 \begin{enumerate}
-\item \begin{tikzpicture}
-    \graph[layered layout,sibling distance=4mm] { a -- b -- c -- a};
+\item For the following graph:
+
+\begin{tikzpicture}[every circle node/.style=draw]
+    \node (A) at (2,3) [circle] {A};
+    \node (B) at (6,3) [circle] {B};
+    \node (C) at (0,1.5) [circle] {C};
+    \node (D) at (4,1.5) [circle] {D};
+    \node (E) at (8,1.5) [circle] {E};
+    \node (F) at (2,0) [circle] {F};
+    \node (G) at (6,0) [circle] {G};
+    \graph[edge quotes={fill=white,inner sep=1mm}] {
+        (A) --["2"] (B);
+        (C) --["2"] (D) --["4"] (E);
+        (A) --["5"] (C);
+        (A) --["3"] (D);
+        (B) --["5"] (E);
+        (G) --["2"] (F) --["3"] (D) --["6"] (G) --["5"] (E);
+    };
 \end{tikzpicture}
+    \begin{enumerate}
+    \item Find the shortest path from C to G.
+    \item Find the shortest path from F to B.
+    \item Draw a minimum spanning tree.
+    \end{enumerate}
+
 \end{enumerate}
 
 \newpage
 \subsection*{Answers}
 
 \begin{enumerate}
-\item 
+\item
+    \begin{enumerate}
+    \item C \ra D \ra F \ra G, Weight of 7
+    \item F \ra D \ra A \ra B, Weight of 8
+    \item
+    \begin{tikzpicture}[every circle node/.style=draw]
+        \node (A) at (2,3) [circle] {A};
+        \node (B) at (6,3) [circle] {B};
+        \node (C) at (0,1.5) [circle] {C};
+        \node (D) at (4,1.5) [circle] {D};
+        \node (E) at (8,1.5) [circle] {E};
+        \node (F) at (2,0) [circle] {F};
+        \node (G) at (6,0) [circle] {G};
+        \graph[edge quotes={fill=white,inner sep=1mm}] {
+            (A) --["2"] (B);
+            (C) --["2"] (D) --["4"] (E);
+            (A) --["3"] (D);
+            (G) --["2"] (F) --["3"] (D);
+        };
+    \end{tikzpicture}
+    \end{enumerate}
 \end{enumerate}
 
 \end{document}
