@@ -6,12 +6,12 @@
 \usetikzlibrary{graphs,graphdrawing,quotes}
 \usegdlibrary{layered,force}
 
-\newcommand{\ra}{$\to$}
+\newcommand{\ra}{$\to$ }
 
 \begin{document}
 
 \large
-\section*{Sheet Title}
+\section*{Shortest Path and Minimum Spanning Tree}
 
 \subsection*{Question Bank}
 
@@ -46,6 +46,73 @@ the example tree.
     \item Draw a minimum spanning tree.
     \end{enumerate}
 
+\item For the following graph:
+
+\begin{tikzpicture}[every circle node/.style=draw,scale=1.3]
+    \node (A) at (1,3.5) [circle] {A};
+    \node (B) at (3,3.5) [circle] {B};
+    \node (C) at (5,3.5) [circle] {C};
+    \node (D) at (0,1.73) [circle] {D};
+    \node (E) at (2,1.73) [circle] {E};
+    \node (F) at (4,1.73) [circle] {F};
+    \node (G) at (6,1.73) [circle] {G};
+    \node (H) at (1,0) [circle] {H};
+    \node (I) at (3,0) [circle] {I};
+    \node (J) at (5,0) [circle] {J};
+    \graph[edge quotes={fill=white,inner sep=1mm}] {
+        (A) --["3"] (B) --["4"] (C);
+        (D) --["4"] (A) --["3"] (E);
+        (B) --["5"] (F) --["7"] (C) --["4"] (G);
+        (D) --["5"] (E) --["2"] (F) --["4"] (G);
+        (D) --["3"] (H);
+        (E) --["4"] (I) --["6"] (F) --["5"] (J) --["3"] (G);
+        (H) --["2"] (I) -- ["4"] (J);
+    };
+\end{tikzpicture}
+    \begin{enumerate}
+    \item Find the shortest path from C to D.
+    \item Find the shortest path from H to B.
+    \item Draw a minimum spanning tree.
+    \end{enumerate}
+
+% remove if necessary
+\newpage
+\item For the following graph:
+
+\begin{tikzpicture}[every circle node/.style=draw,scale=1.35]
+    \node (A) at (0,3) [circle] {A};
+    \node (B) at (2,3) [circle] {B};
+    \node (C) at (4,3) [circle] {C};
+    \node (D) at (6,3) [circle] {D};
+    \node (E) at (0,0) [circle] {E};
+    \node (F) at (2,0) [circle] {F};
+    \node (G) at (4,0) [circle] {G};
+    \node (H) at (6,0) [circle] {H};
+    \graph[edge quotes={fill=white,inner sep=1mm}] {
+        (B) --["7"] (C) --["7"] (D);
+        (A) --["5"] (E);
+        (A) --["5",pos=0.75] (F);
+        (A) --["3"] (G);
+        (B) --["4",pos=0.75] (E);
+        (B) --["5",pos=0.25] (G);
+        (C) --["5",pos=0.25] (F);
+        (C) --["5"] (G);
+        (C) --["3"] (H);
+        (D) --["2"] (H);
+        (E) --["9"] (F) --["8"] (G) --["6"] (H);
+    };
+\end{tikzpicture}
+    \begin{enumerate}
+    \item Find the shortest path from E to C.
+    \item Find the shortest path from D to E.
+    \item Draw a minimum spanning tree.
+    \end{enumerate}
+
+% \begin{tikzpicture}[every circle node/.style=draw]
+%     \graph[edge quotes={fill=white,inner sep=1mm}] {
+%     };
+% \end{tikzpicture}
+
 \end{enumerate}
 
 \newpage
@@ -54,8 +121,8 @@ the example tree.
 \begin{enumerate}
 \item
     \begin{enumerate}
-    \item C \ra D \ra F \ra G, Weight of 7
-    \item F \ra D \ra A \ra B, Weight of 8
+    \item C \ra D \ra F \ra G, weight of 7
+    \item F \ra D \ra A \ra B, weight of 8
     \item
     \begin{tikzpicture}[every circle node/.style=draw]
         \node (A) at (2,3) [circle] {A};
@@ -70,6 +137,60 @@ the example tree.
             (C) --["2"] (D) --["4"] (E);
             (A) --["3"] (D);
             (G) --["2"] (F) --["3"] (D);
+        };
+    \end{tikzpicture}
+    \end{enumerate}
+
+\item
+    \begin{enumerate}
+    \item C \ra B \ra A \ra D, weight of 11
+    \item H \ra D \ra A \ra B, weight of 10
+    \item
+    \begin{tikzpicture}[every circle node/.style=draw,scale=1.3]
+        \node (A) at (1,3.5) [circle] {A};
+        \node (B) at (3,3.5) [circle] {B};
+        \node (C) at (5,3.5) [circle] {C};
+        \node (D) at (0,1.73) [circle] {D};
+        \node (E) at (2,1.73) [circle] {E};
+        \node (F) at (4,1.73) [circle] {F};
+        \node (G) at (6,1.73) [circle] {G};
+        \node (H) at (1,0) [circle] {H};
+        \node (I) at (3,0) [circle] {I};
+        \node (J) at (5,0) [circle] {J};
+        \graph[edge quotes={fill=white,inner sep=1mm}] {
+            (A) --["3"] (B) --["4"] (C);
+            (A) --["3"] (E);
+            (E) --["2"] (F);
+            (D) --["3"] (H);
+            (E) --["4"] (I); 
+            (J) --["3"] (G);
+            (H) --["2"] (I) -- ["4"] (J);
+        };
+    \end{tikzpicture}
+    \end{enumerate}
+
+\item
+    \begin{enumerate}
+    \item E \ra A \ra G \ra C, weight of 13
+    \item D \ra H \ra C \ra G \ra A \ra E, weight of 18
+    \item
+    \begin{tikzpicture}[every circle node/.style=draw,scale=1.35]
+        \node (A) at (0,3) [circle] {A};
+        \node (B) at (2,3) [circle] {B};
+        \node (C) at (4,3) [circle] {C};
+        \node (D) at (6,3) [circle] {D};
+        \node (E) at (0,0) [circle] {E};
+        \node (F) at (2,0) [circle] {F};
+        \node (G) at (4,0) [circle] {G};
+        \node (H) at (6,0) [circle] {H};
+        \graph[edge quotes={fill=white,inner sep=1mm}] {
+            (A) --["5"] (E);
+            (A) --["3"] (G);
+            (B) --["4",pos=0.75] (E);
+            (C) --["5",pos=0.25] (F);
+            (C) --["5"] (G);
+            (C) --["3"] (H);
+            (D) --["2"] (H);
         };
     \end{tikzpicture}
     \end{enumerate}
