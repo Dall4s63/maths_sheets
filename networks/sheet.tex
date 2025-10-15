@@ -234,6 +234,35 @@ the example tree.
         };
     \end{tikzpicture}
     \end{enumerate}
+
+\item
+    \begin{enumerate}
+    \item A \ra C \ra G \ra K or A \ra F \ra G \ra K, weight of 49
+    \item I \ra G \ra C \ra E, weight of 57
+    \item
+    \begin{tikzpicture}[every circle node/.style=draw, scale=1.1]
+        \node (A) at (0,8) [circle] {A};
+        \node (B) at (2,9) [circle] {B};
+        \node (C) at (4,7) [circle] {C};
+        \node (D) at (8,8) [circle] {D};
+        \node (E) at (10,9) [circle] {E};
+        \node (F) at (2.3,4.8) [circle] {F};
+        \node (G) at (6,5) [circle] {G};
+        \node (H) at (8.8,5.3) [circle] {H};
+        \node (I) at (0,2.7) [circle] {I};
+        \node (J) at (3,2) [circle] {J};
+        \node (K) at (7.5,2.5) [circle] {K};
+        \node (L) at (11,3) [circle] {L};
+        \node (M) at (5,0) [circle] {M};
+        \graph[edge quotes={fill=white,inner sep=1mm}] {
+            % MST
+            (A) --["8",bend left=15] (B) --["13"] (C) --["15",bend right=10] (G);
+            (I) --["10"] (J) --["16",pos=0.7] (F) --["16"] (G);
+            (M) --["17"] (K) --["14"] (G);
+            (K) --["14"] (L) --["12"] (H) --["15"] (D) --["17"] (E);
+        };
+    \end{tikzpicture}
+    \end{enumerate}
 \end{enumerate}
 
 \end{document}
