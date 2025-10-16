@@ -1,0 +1,80 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage{worksheet}
+
+\usepackage{tikz}
+
+\pagenumbering{gobble}
+
+\begin{document}
+
+\scriptsize
+\begin{tikzpicture}
+    \draw[very thin,blue!35,step=5mm] (-7.5,-7.5) grid (7.5,7.5);
+
+    \draw[thick,<->] (-7.75,0) -- (7.75,0) node[right] {\Large $x$};
+    \draw[thick,<->] (0,-7.75) -- (0,7.75) node[above] {\Large $y$};
+
+    \foreach \x in {1,...,15}
+        {
+        \draw[thick] (\x/2,0.1) -- (\x/2,-0.1) node[below,inner sep=0.5mm,fill=white] {$\x$};
+        \draw[thick] (-\x/2,0.1) -- (-\x/2,-0.1) node[below,inner sep=0.5mm,fill=white] {$-\x$};
+        }
+    \foreach \y in {1,...,15}
+        {
+        \draw[thick] (0.1,\y/2) -- (-0.1,\y/2) node[left,inner sep=0.5mm,fill=white] {$\y$};
+        \draw[thick] (0.1,-\y/2) -- (-0.1,-\y/2) node[left,inner sep=0.5mm,fill=white] {$-\y$};
+        }
+\end{tikzpicture}
+
+\newpage
+\newcommand{\smallplane}{\begin{tikzpicture}
+    \draw[very thin,blue!35,step=5mm] (-3.5,-3.5) grid (3.5,3.5);
+
+    \draw[thick,<->] (-3.75,0) -- (3.75,0) node[right] {\Large $x$};
+    \draw[thick,<->] (0,-3.75) -- (0,3.75) node[above] {\Large $y$};
+
+    \foreach \x in {1,...,7}
+        {
+        \draw[thick] (\x/2,0.1) -- (\x/2,-0.1) node[below,inner sep=0.5mm,fill=white] {$\x$};
+        \draw[thick] (-\x/2,0.1) -- (-\x/2,-0.1) node[below,inner sep=0.5mm,fill=white] {$-\x$};
+        }
+    \foreach \y in {1,...,7}
+        {
+        \draw[thick] (0.1,\y/2) -- (-0.1,\y/2) node[left,inner sep=0.5mm,fill=white] {$\y$};
+        \draw[thick] (0.1,-\y/2) -- (-0.1,-\y/2) node[left,inner sep=0.5mm,fill=white] {$-\y$};
+        }
+\end{tikzpicture}}
+
+\smallplane
+\smallplane
+
+\smallplane
+\smallplane
+
+\newpage
+\renewcommand{\smallplane}{\begin{tikzpicture}
+    \draw[very thin,blue!35,step=5mm] (-3.5,-3.5) grid (3.5,3.5);
+
+    \draw[thick,<->] (-3.75,0) -- (3.75,0) node[right] {\Large $x$};
+    \draw[thick,<->] (0,-3.75) -- (0,3.75) node[above] {\Large $y$};
+
+    \foreach \x in {2,4,...,14}
+        {
+        \draw[thick] (\x/4,0.1) -- (\x/4,-0.1) node[below,inner sep=0.5mm,fill=white] {$\x$};
+        \draw[thick] (-\x/4,0.1) -- (-\x/4,-0.1) node[below,inner sep=0.5mm,fill=white] {$-\x$};
+        }
+    \foreach \y in {2,4,...,14}
+        {
+        \draw[thick] (0.1,\y/4) -- (-0.1,\y/4) node[left,inner sep=0.5mm,fill=white] {$\y$};
+        \draw[thick] (0.1,-\y/4) -- (-0.1,-\y/4) node[left,inner sep=0.5mm,fill=white] {$-\y$};
+        }
+\end{tikzpicture}}
+
+\smallplane
+\smallplane
+
+\smallplane
+\smallplane
+
+\end{document}
