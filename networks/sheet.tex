@@ -110,7 +110,7 @@ the example tree.
 
 \item For the following graph:
 
-\begin{tikzpicture}[every circle node/.style=draw, scale=1.2]
+\begin{tikzpicture}[every circle node/.style=draw, scale=1.1]
     \node (A) at (0,8) [circle] {A};
     \node (B) at (2,9) [circle] {B};
     \node (C) at (4,7) [circle] {C};
@@ -132,16 +132,21 @@ the example tree.
         (K) --["14"] (L) --["12"] (H) --["15"] (D) --["17"] (E);
         % Other edges
         (B) --["17",bend left=10] (E) --["18",bend right=13] (C);
-        (A) --["20",pos=0.4] (C) --["25"] (H);
+        (A) --["20",pos=0.4] (C) --["25",pos=0.4] (H);
         (A) --["19"] (F) --["18",bend right=10,pos=0.4] (B);
         (D) --["20"] (G) --["19"] (H);
         (A) --["24"] (I) --["17"] (F);
         (E) --["21"] (H) --["17"] (K);
-        (E) --["18",bend left=10] (L) --["21"] (M);
+        (E) --["18",bend left=10] (L) --["21",bend left=15] (M);
         (I) --["24",bend right=15,pos=0.6] (G) --["18"] (M);
-        (I) --["20"] (M) --["19"] (J);
+        (I) --["20",bend right=15] (M) --["19"] (J);
     };
 \end{tikzpicture}
+    \begin{enumerate}
+    \item Find the shortest path from A to K.
+    \item Find the shortest path from I to E.
+    \item Draw a minimum spanning tree.
+    \end{enumerate}
 
 % \begin{tikzpicture}[every circle node/.style=draw]
 %     \graph[edge quotes={fill=white,inner sep=1mm}] {
@@ -226,6 +231,35 @@ the example tree.
             (C) --["5"] (G);
             (C) --["3"] (H);
             (D) --["2"] (H);
+        };
+    \end{tikzpicture}
+    \end{enumerate}
+
+\item
+    \begin{enumerate}
+    \item A \ra C \ra G \ra K or A \ra F \ra G \ra K, weight of 49
+    \item I \ra G \ra C \ra E, weight of 57
+    \item
+    \begin{tikzpicture}[every circle node/.style=draw, scale=1.1]
+        \node (A) at (0,8) [circle] {A};
+        \node (B) at (2,9) [circle] {B};
+        \node (C) at (4,7) [circle] {C};
+        \node (D) at (8,8) [circle] {D};
+        \node (E) at (10,9) [circle] {E};
+        \node (F) at (2.3,4.8) [circle] {F};
+        \node (G) at (6,5) [circle] {G};
+        \node (H) at (8.8,5.3) [circle] {H};
+        \node (I) at (0,2.7) [circle] {I};
+        \node (J) at (3,2) [circle] {J};
+        \node (K) at (7.5,2.5) [circle] {K};
+        \node (L) at (11,3) [circle] {L};
+        \node (M) at (5,0) [circle] {M};
+        \graph[edge quotes={fill=white,inner sep=1mm}] {
+            % MST
+            (A) --["8",bend left=15] (B) --["13"] (C) --["15",bend right=10] (G);
+            (I) --["10"] (J) --["16",pos=0.7] (F) --["16"] (G);
+            (M) --["17"] (K) --["14"] (G);
+            (K) --["14"] (L) --["12"] (H) --["15"] (D) --["17"] (E);
         };
     \end{tikzpicture}
     \end{enumerate}
