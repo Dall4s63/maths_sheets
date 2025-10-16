@@ -28,7 +28,7 @@ are the sheets that feel more complete.
   form for line equations is in `grad_int_to_general`. 
   These questions can also be used for graphing lines.
 - Shortest path and minimum spanning tree questions are in 
-  `networks`, currently as `sheet.tex`. These are missing 
+  `networks`, currently as `sheet.pdf`. These are missing 
   worked examples.
 
 ## Planned Sheet Ideas
