@@ -3,10 +3,10 @@
 \usepackage{worksheet}
 
 \usepackage{enumitem}
+\usepackage{parskip}
 
 \usepackage{tikz}
-\usetikzlibrary{graphs,graphdrawing,quotes}
-\usegdlibrary{layered,force}
+\usetikzlibrary{graphs,quotes}
 
 \newcommand{\ra}{$\to$ }
 
@@ -37,6 +37,9 @@ inspection or by recording the previous node alongside the distance to
 each node.
 \end{enumerate}
 
+This is quite a lot to take in, so lets work through an example of the 
+algorithm. First consider the graph,
+
 \begin{tikzpicture}[every circle node/.style=draw,scale=1.5]
     \node (A) at (0,4) [circle] {A};
     \node (B) at (4,4) [circle] {B};
@@ -56,5 +59,473 @@ each node.
         (A) --["8"] (F) --["6"] (D) --["5"] (G) --["5"] (H);
     };
 \end{tikzpicture}
+
+Let's say we want to find the shortest path from A to H. For the first 
+part of the algorithm we will give A a distance of 0---since it's the 
+start node---and every other node a distance of infinity.
+
+\begin{tikzpicture}[every circle node/.style=draw,scale=1.5]
+    \node (A) at (0,4) [circle] {A};
+    \node (B) at (4,4) [circle] {B};
+    \node (C) at (8,4) [circle] {C};
+    \node (D) at (2,2) [circle] {D};
+    \node (E) at (6,2) [circle] {E};
+    \node (F) at (0,0) [circle] {F};
+    \node (G) at (4,0) [circle] {G};
+    \node (H) at (8,0) [circle] {H};
+    \graph[edge quotes={fill=white,inner sep=1mm}] {
+        % MST 
+        (A) --["2"] (D) --["4"] (B) --["3"] (C);
+        (B) --["3"] (G);
+        (F) --["1"] (G) --["1"] (E) --["3"] (H);
+        % other edges
+        (A) --["7"] (B) --["4"] (E) --["7"] (C) --["8"] (H);
+        (A) --["8"] (F) --["6"] (D) --["5"] (G) --["5"] (H);
+    };
+    % A
+    \node at (0,4.3) [blue,inner sep=1pt,fill=white] {0};
+    % B
+    \node at (4,4.3) [blue,inner sep=1pt,fill=white] {$\infty$};
+    % C
+    \node at (8,4.3) [blue,inner sep=1pt,fill=white] {$\infty$};
+    % D
+    \node at (2,2.3) [blue,inner sep=1pt,fill=white] {$\infty$};
+    % E
+    \node at (6,2.3) [blue,inner sep=1pt,fill=white] {$\infty$};
+    % F
+    \node at (0,0.3) [blue,inner sep=1pt,fill=white] {$\infty$};
+    % G
+    \node at (4,0.3) [blue,inner sep=1pt,fill=white] {$\infty$};
+    % H
+    \node at (8,0.3) [blue,inner sep=1pt,fill=white] {$\infty$};
+\end{tikzpicture}
+
+Since all our nodes are unvisited we will choose the node with 
+the lowest distance to be our current node, in this case node A
+with distance $d_A = 0$.
+For each edge leaving from A with weight $w$, we will calculate the sum of 
+$d_A + w$ and if this is smaller than the weight of the destination 
+node we will update that node's distance and previous node to be 
+$d_A + w$ and A. Since currently all the nodes connected to A have a 
+distance of infinity, they will all be updated to this new weight.
+
+\begin{tikzpicture}[every circle node/.style=draw,scale=1.5]
+    \node (A) at (0,4) [blue,circle] {A};
+    \node (B) at (4,4) [circle] {B};
+    \node (C) at (8,4) [circle] {C};
+    \node (D) at (2,2) [circle] {D};
+    \node (E) at (6,2) [circle] {E};
+    \node (F) at (0,0) [circle] {F};
+    \node (G) at (4,0) [circle] {G};
+    \node (H) at (8,0) [circle] {H};
+    \graph[edge quotes={fill=white,inner sep=1mm}] {
+        % MST 
+        (A) --["2",blue] (D) --["4"] (B) --["3"] (C);
+        (B) --["3"] (G);
+        (F) --["1"] (G) --["1"] (E) --["3"] (H);
+        % other edges
+        (A) --["7",blue] (B) --["4"] (E) --["7"] (C) --["8"] (H);
+        (A) --["8",blue] (F) --["6"] (D) --["5"] (G) --["5"] (H);
+    };
+    % A
+    \node at (0,4.3) [inner sep=1pt,fill=white] {0};
+    % B
+    \node at (4,4.3) [blue,inner sep=1pt,fill=white] {A: 7};
+    % C
+    \node at (8,4.3) [inner sep=1pt,fill=white] {$\infty$};
+    % D
+    \node at (2,2.3) [blue,inner sep=1pt,fill=white] {A: 2};
+    % E
+    \node at (6,2.3) [inner sep=1pt,fill=white] {$\infty$};
+    % F
+    \node at (0,0.3) [blue,inner sep=1pt,fill=white] {A: 8};
+    % G
+    \node at (4,0.3) [inner sep=1pt,fill=white] {$\infty$};
+    % H
+    \node at (8,0.3) [inner sep=1pt,fill=white] {$\infty$};
+\end{tikzpicture}
+
+Now we will add A to our list of visited nodes, which we will mark 
+as {\color{green}green}. And we will select the unvisited node with the 
+\textbf{lowest distance} to be the next current node. In this case the next 
+lowest node is D with $d_D = 2$. Similar to before we will check each 
+edge leaving D to an unvisited node and calculate 
+
+\begin{tikzpicture}[every circle node/.style=draw,scale=1.5]
+    \node (A) at (0,4) [green,circle] {A};
+    \node (B) at (4,4) [circle] {B};
+    \node (C) at (8,4) [circle] {C};
+    \node (D) at (2,2) [blue,circle] {D};
+    \node (E) at (6,2) [circle] {E};
+    \node (F) at (0,0) [circle] {F};
+    \node (G) at (4,0) [circle] {G};
+    \node (H) at (8,0) [circle] {H};
+    \graph[edge quotes={fill=white,inner sep=1mm}] {
+        % MST 
+        (A) --["2"] (D) --[blue,"4"] (B) --["3"] (C);
+        (B) --["3"] (G);
+        (F) --["1"] (G) --["1"] (E) --["3"] (H);
+        % other edges
+        (A) --["7"] (B) --["4"] (E) --["7"] (C) --["8"] (H);
+        (A) --["8"] (F) --[blue,"6"] (D) --[blue,"5"] (G) --["5"] (H);
+    };
+    % A
+    \node at (0,4.3) [inner sep=1pt,fill=white] {0};
+    % B
+    \node at (4,4.3) [inner sep=1pt,fill=white] {A: 7};
+    % C
+    \node at (8,4.3) [inner sep=1pt,fill=white] {$\infty$};
+    % D
+    \node at (2,2.3) [inner sep=1pt,fill=white] {A: 2};
+    % E
+    \node at (6,2.3) [inner sep=1pt,fill=white] {$\infty$};
+    % F
+    \node at (0,0.3) [inner sep=1pt,fill=white] {A: 8};
+    % G
+    \node at (4,0.3) [inner sep=1pt,fill=white] {$\infty$};
+    % H
+    \node at (8,0.3) [inner sep=1pt,fill=white] {$\infty$};
+\end{tikzpicture}
+
+Notice that for the edge from D to B, $d_D + 4$ is 6, which is less than 
+the current distance to B from A, this means that will will update the 
+distance to B with our new best path via D.
+
+\begin{tikzpicture}[every circle node/.style=draw,scale=1.5]
+    \node (A) at (0,4) [green,circle] {A};
+    \node (B) at (4,4) [circle] {B};
+    \node (C) at (8,4) [circle] {C};
+    \node (D) at (2,2) [blue,circle] {D};
+    \node (E) at (6,2) [circle] {E};
+    \node (F) at (0,0) [circle] {F};
+    \node (G) at (4,0) [circle] {G};
+    \node (H) at (8,0) [circle] {H};
+    \graph[edge quotes={fill=white,inner sep=1mm}] {
+        % MST 
+        (A) --["2"] (D) --[blue,"4"] (B) --["3"] (C);
+        (B) --["3"] (G);
+        (F) --["1"] (G) --["1"] (E) --["3"] (H);
+        % other edges
+        (A) --["7"] (B) --["4"] (E) --["7"] (C) --["8"] (H);
+        (A) --["8"] (F) --[blue,"6"] (D) --[blue,"5"] (G) --["5"] (H);
+    };
+    % A
+    \node at (0,4.3) [inner sep=1pt,fill=white] {0};
+    % B
+    \node at (4,4.3) [blue,inner sep=1pt,fill=white] {D: 6};
+    % C
+    \node at (8,4.3) [inner sep=1pt,fill=white] {$\infty$};
+    % D
+    \node at (2,2.3) [inner sep=1pt,fill=white] {A: 2};
+    % E
+    \node at (6,2.3) [inner sep=1pt,fill=white] {$\infty$};
+    % F
+    \node at (0,0.3) [inner sep=1pt,fill=white] {A: 8};
+    % G
+    \node at (4,0.3) [blue,inner sep=1pt,fill=white] {D: 7};
+    % H
+    \node at (8,0.3) [inner sep=1pt,fill=white] {$\infty$};
+\end{tikzpicture}
+
+Then we will add node D to the visited set.
+
+\begin{tikzpicture}[every circle node/.style=draw,scale=1.5]
+    \node (A) at (0,4) [green,circle] {A};
+    \node (B) at (4,4) [circle] {B};
+    \node (C) at (8,4) [circle] {C};
+    \node (D) at (2,2) [green,circle] {D};
+    \node (E) at (6,2) [circle] {E};
+    \node (F) at (0,0) [circle] {F};
+    \node (G) at (4,0) [circle] {G};
+    \node (H) at (8,0) [circle] {H};
+    \graph[edge quotes={fill=white,inner sep=1mm}] {
+        % MST 
+        (A) --["2"] (D) --["4"] (B) --["3"] (C);
+        (B) --["3"] (G);
+        (F) --["1"] (G) --["1"] (E) --["3"] (H);
+        % other edges
+        (A) --["7"] (B) --["4"] (E) --["7"] (C) --["8"] (H);
+        (A) --["8"] (F) --["6"] (D) --["5"] (G) --["5"] (H);
+    };
+    % A
+    \node at (0,4.3) [inner sep=1pt,fill=white] {0};
+    % B
+    \node at (4,4.3) [inner sep=1pt,fill=white] {D: 6};
+    % C
+    \node at (8,4.3) [inner sep=1pt,fill=white] {$\infty$};
+    % D
+    \node at (2,2.3) [inner sep=1pt,fill=white] {A: 2};
+    % E
+    \node at (6,2.3) [inner sep=1pt,fill=white] {$\infty$};
+    % F
+    \node at (0,0.3) [inner sep=1pt,fill=white] {A: 8};
+    % G
+    \node at (4,0.3) [inner sep=1pt,fill=white] {D: 7};
+    % H
+    \node at (8,0.3) [inner sep=1pt,fill=white] {$\infty$};
+\end{tikzpicture}
+
+Then we will choose the unvisited node with the lowest distance to be 
+our current node, this time B. I'm not going to narrate the visiting of 
+the remaining nodes, but hopefully you will be able to see the process 
+through the illustrations.
+
+\begin{tikzpicture}[every circle node/.style=draw,scale=1.5]
+    \node (A) at (0,4) [green,circle] {A};
+    \node (B) at (4,4) [blue,circle] {B};
+    \node (C) at (8,4) [circle] {C};
+    \node (D) at (2,2) [green,circle] {D};
+    \node (E) at (6,2) [circle] {E};
+    \node (F) at (0,0) [circle] {F};
+    \node (G) at (4,0) [circle] {G};
+    \node (H) at (8,0) [circle] {H};
+    \graph[edge quotes={fill=white,inner sep=1mm}] {
+        % MST 
+        (A) --["2"] (D) --["4"] (B) --[blue,"3"] (C);
+        (B) --[blue,"3"] (G);
+        (F) --["1"] (G) --["1"] (E) --["3"] (H);
+        % other edges
+        (A) --["7"] (B) --[blue,"4"] (E) --["7"] (C) --["8"] (H);
+        (A) --["8"] (F) --["6"] (D) --["5"] (G) --["5"] (H);
+    };
+    % A
+    \node at (0,4.3) [inner sep=1pt,fill=white] {0};
+    % B
+    \node at (4,4.3) [inner sep=1pt,fill=white] {D: 6};
+    % C
+    \node at (8,4.3) [blue,inner sep=1pt,fill=white] {B: 9};
+    % D
+    \node at (2,2.3) [inner sep=1pt,fill=white] {A: 2};
+    % E
+    \node at (6,2.3) [blue,inner sep=1pt,fill=white] {B: 10};
+    % F
+    \node at (0,0.3) [inner sep=1pt,fill=white] {A: 8};
+    % G
+    \node at (4,0.3) [inner sep=1pt,fill=white] {D: 7};
+    % H
+    \node at (8,0.3) [inner sep=1pt,fill=white] {$\infty$};
+\end{tikzpicture}
+
+\begin{tikzpicture}[every circle node/.style=draw,scale=1.5]
+    \node (A) at (0,4) [green,circle] {A};
+    \node (B) at (4,4) [green,circle] {B};
+    \node (C) at (8,4) [circle] {C};
+    \node (D) at (2,2) [green,circle] {D};
+    \node (E) at (6,2) [circle] {E};
+    \node (F) at (0,0) [circle] {F};
+    \node (G) at (4,0) [blue,circle] {G};
+    \node (H) at (8,0) [circle] {H};
+    \graph[edge quotes={fill=white,inner sep=1mm}] {
+        % MST 
+        (A) --["2"] (D) --["4"] (B) --["3"] (C);
+        (B) --["3"] (G);
+        (F) --[blue,"1"] (G) --[blue,"1"] (E) --["3"] (H);
+        % other edges
+        (A) --["7"] (B) --["4"] (E) --["7"] (C) --["8"] (H);
+        (A) --["8"] (F) --["6"] (D) --["5"] (G) --[blue,"5"] (H);
+    };
+    % A
+    \node at (0,4.3) [inner sep=1pt,fill=white] {0};
+    % B
+    \node at (4,4.3) [inner sep=1pt,fill=white] {D: 6};
+    % C
+    \node at (8,4.3) [inner sep=1pt,fill=white] {B: 9};
+    % D
+    \node at (2,2.3) [inner sep=1pt,fill=white] {A: 2};
+    % E
+    \node at (6,2.3) [blue,inner sep=1pt,fill=white] {G:8};
+    % F
+    \node at (0,0.3) [inner sep=1pt,fill=white] {A: 8};
+    % G
+    \node at (4,0.3) [inner sep=1pt,fill=white] {D: 7};
+    % H
+    \node at (8,0.3) [blue,inner sep=1pt,fill=white] {G: 12};
+\end{tikzpicture}
+
+\begin{tikzpicture}[every circle node/.style=draw,scale=1.5]
+    \node (A) at (0,4) [green,circle] {A};
+    \node (B) at (4,4) [green,circle] {B};
+    \node (C) at (8,4) [circle] {C};
+    \node (D) at (2,2) [green,circle] {D};
+    \node (E) at (6,2) [circle] {E};
+    \node (F) at (0,0) [blue,circle] {F};
+    \node (G) at (4,0) [green,circle] {G};
+    \node (H) at (8,0) [circle] {H};
+    \graph[edge quotes={fill=white,inner sep=1mm}] {
+        % MST 
+        (A) --["2"] (D) --["4"] (B) --["3"] (C);
+        (B) --["3"] (G);
+        (F) --["1"] (G) --["1"] (E) --["3"] (H);
+        % other edges
+        (A) --["7"] (B) --["4"] (E) --["7"] (C) --["8"] (H);
+        (A) --["8"] (F) --["6"] (D) --["5"] (G) --["5"] (H);
+    };
+    % A
+    \node at (0,4.3) [inner sep=1pt,fill=white] {0};
+    % B
+    \node at (4,4.3) [inner sep=1pt,fill=white] {D: 6};
+    % C
+    \node at (8,4.3) [inner sep=1pt,fill=white] {B: 9};
+    % D
+    \node at (2,2.3) [inner sep=1pt,fill=white] {A: 2};
+    % E
+    \node at (6,2.3) [inner sep=1pt,fill=white] {G:8};
+    % F
+    \node at (0,0.3) [inner sep=1pt,fill=white] {A: 8};
+    % G
+    \node at (4,0.3) [inner sep=1pt,fill=white] {D: 7};
+    % H
+    \node at (8,0.3) [inner sep=1pt,fill=white] {G: 12};
+\end{tikzpicture}
+
+\begin{tikzpicture}[every circle node/.style=draw,scale=1.5]
+    \node (A) at (0,4) [green,circle] {A};
+    \node (B) at (4,4) [green,circle] {B};
+    \node (C) at (8,4) [circle] {C};
+    \node (D) at (2,2) [green,circle] {D};
+    \node (E) at (6,2) [blue,circle] {E};
+    \node (F) at (0,0) [green,circle] {F};
+    \node (G) at (4,0) [green,circle] {G};
+    \node (H) at (8,0) [circle] {H};
+    \graph[edge quotes={fill=white,inner sep=1mm}] {
+        % MST 
+        (A) --["2"] (D) --["4"] (B) --["3"] (C);
+        (B) --["3"] (G);
+        (F) --["1"] (G) --["1"] (E) --[blue,"3"] (H);
+        % other edges
+        (A) --["7"] (B) --["4"] (E) --[blue,"7"] (C) --["8"] (H);
+        (A) --["8"] (F) --["6"] (D) --["5"] (G) --["5"] (H);
+    };
+    % A
+    \node at (0,4.3) [inner sep=1pt,fill=white] {0};
+    % B
+    \node at (4,4.3) [inner sep=1pt,fill=white] {D: 6};
+    % C
+    \node at (8,4.3) [inner sep=1pt,fill=white] {B: 9};
+    % D
+    \node at (2,2.3) [inner sep=1pt,fill=white] {A: 2};
+    % E
+    \node at (6,2.3) [inner sep=1pt,fill=white] {G:8};
+    % F
+    \node at (0,0.3) [inner sep=1pt,fill=white] {A: 8};
+    % G
+    \node at (4,0.3) [inner sep=1pt,fill=white] {D: 7};
+    % H
+    \node at (8,0.3) [blue,inner sep=1pt,fill=white] {E: 11};
+\end{tikzpicture}
+
+\begin{tikzpicture}[every circle node/.style=draw,scale=1.5]
+    \node (A) at (0,4) [green,circle] {A};
+    \node (B) at (4,4) [green,circle] {B};
+    \node (C) at (8,4) [blue,circle] {C};
+    \node (D) at (2,2) [green,circle] {D};
+    \node (E) at (6,2) [green,circle] {E};
+    \node (F) at (0,0) [green,circle] {F};
+    \node (G) at (4,0) [green,circle] {G};
+    \node (H) at (8,0) [circle] {H};
+    \graph[edge quotes={fill=white,inner sep=1mm}] {
+        % MST 
+        (A) --["2"] (D) --["4"] (B) --["3"] (C);
+        (B) --["3"] (G);
+        (F) --["1"] (G) --["1"] (E) --["3"] (H);
+        % other edges
+        (A) --["7"] (B) --["4"] (E) --["7"] (C) --[blue,"8"] (H);
+        (A) --["8"] (F) --["6"] (D) --["5"] (G) --["5"] (H);
+    };
+    % A
+    \node at (0,4.3) [inner sep=1pt,fill=white] {0};
+    % B
+    \node at (4,4.3) [inner sep=1pt,fill=white] {D: 6};
+    % C
+    \node at (8,4.3) [inner sep=1pt,fill=white] {B: 9};
+    % D
+    \node at (2,2.3) [inner sep=1pt,fill=white] {A: 2};
+    % E
+    \node at (6,2.3) [inner sep=1pt,fill=white] {G:8};
+    % F
+    \node at (0,0.3) [inner sep=1pt,fill=white] {A: 8};
+    % G
+    \node at (4,0.3) [inner sep=1pt,fill=white] {D: 7};
+    % H
+    \node at (8,0.3) [inner sep=1pt,fill=white] {E: 11};
+\end{tikzpicture}
+
+\begin{tikzpicture}[every circle node/.style=draw,scale=1.5]
+    \node (A) at (0,4) [green,circle] {A};
+    \node (B) at (4,4) [green,circle] {B};
+    \node (C) at (8,4) [green,circle] {C};
+    \node (D) at (2,2) [green,circle] {D};
+    \node (E) at (6,2) [green,circle] {E};
+    \node (F) at (0,0) [green,circle] {F};
+    \node (G) at (4,0) [green,circle] {G};
+    \node (H) at (8,0) [blue,circle] {H};
+    \graph[edge quotes={fill=white,inner sep=1mm}] {
+        % MST 
+        (A) --["2"] (D) --["4"] (B) --["3"] (C);
+        (B) --["3"] (G);
+        (F) --["1"] (G) --["1"] (E) --["3"] (H);
+        % other edges
+        (A) --["7"] (B) --["4"] (E) --["7"] (C) --["8"] (H);
+        (A) --["8"] (F) --["6"] (D) --["5"] (G) --["5"] (H);
+    };
+    % A
+    \node at (0,4.3) [inner sep=1pt,fill=white] {0};
+    % B
+    \node at (4,4.3) [inner sep=1pt,fill=white] {D: 6};
+    % C
+    \node at (8,4.3) [inner sep=1pt,fill=white] {B: 9};
+    % D
+    \node at (2,2.3) [inner sep=1pt,fill=white] {A: 2};
+    % E
+    \node at (6,2.3) [inner sep=1pt,fill=white] {G:8};
+    % F
+    \node at (0,0.3) [inner sep=1pt,fill=white] {A: 8};
+    % G
+    \node at (4,0.3) [inner sep=1pt,fill=white] {D: 7};
+    % H
+    \node at (8,0.3) [inner sep=1pt,fill=white] {E: 11};
+\end{tikzpicture}
+
+\begin{tikzpicture}[every circle node/.style=draw,scale=1.5]
+    \node (A) at (0,4) [green,circle] {A};
+    \node (B) at (4,4) [green,circle] {B};
+    \node (C) at (8,4) [green,circle] {C};
+    \node (D) at (2,2) [green,circle] {D};
+    \node (E) at (6,2) [green,circle] {E};
+    \node (F) at (0,0) [green,circle] {F};
+    \node (G) at (4,0) [green,circle] {G};
+    \node (H) at (8,0) [green,circle] {H};
+    \graph[edge quotes={fill=white,inner sep=1mm}] {
+        % MST 
+        (A) --["2"] (D) --["4"] (B) --["3"] (C);
+        (B) --["3"] (G);
+        (F) --["1"] (G) --["1"] (E) --["3"] (H);
+        % other edges
+        (A) --["7"] (B) --["4"] (E) --["7"] (C) --["8"] (H);
+        (A) --["8"] (F) --["6"] (D) --["5"] (G) --["5"] (H);
+    };
+    % A
+    \node at (0,4.3) [inner sep=1pt,fill=white] {0};
+    % B
+    \node at (4,4.3) [inner sep=1pt,fill=white] {D: 6};
+    % C
+    \node at (8,4.3) [inner sep=1pt,fill=white] {B: 9};
+    % D
+    \node at (2,2.3) [inner sep=1pt,fill=white] {A: 2};
+    % E
+    \node at (6,2.3) [inner sep=1pt,fill=white] {G:8};
+    % F
+    \node at (0,0.3) [inner sep=1pt,fill=white] {A: 8};
+    % G
+    \node at (4,0.3) [inner sep=1pt,fill=white] {D: 7};
+    % H
+    \node at (8,0.3) [inner sep=1pt,fill=white] {E: 11};
+\end{tikzpicture}
+
+Now that all nodes have been visited, we know that the distance or 
+total weight to get from A to H is 11, and we can trace back the path 
+by following the markers of the previous node. The path in reverse will 
+be H \ra E \ra G \ra D \ra A, which means that the shortest path 
+from A to H is A \ra D \ra G \ra E \ra H.
 
 \end{document}
