@@ -148,6 +148,13 @@ the example tree.
     \item Draw a minimum spanning tree.
     \end{enumerate}
 
+\item Consider that we want to try a simple greedy algorithm for finding 
+the shortest path. In our new algorithm we will walk along the 
+shortest edge leading out from the node we are currently at, that takes 
+us to a node we have yet to visit. This algorithm will likely work for 
+many graphs, but can you think of an example graph where this algorithm 
+would not work?
+
 % \begin{tikzpicture}[every circle node/.style=draw]
 %     \graph[edge quotes={fill=white,inner sep=1mm}] {
 %     };
@@ -263,6 +270,22 @@ the example tree.
         };
     \end{tikzpicture}
     \end{enumerate}
+
+\item A simple graph for which this algorithm doesn't work is the 
+following graph if we want to find the 
+
+\begin{tikzpicture}[every circle node/.style=draw]
+    \node (A) at (0, 2) [circle] {A};
+    \node (B) at (2, 4) [circle] {B};
+    \node (C) at (2, 0) [circle] {C};
+    \graph[edge quotes={fill=white,inner sep=1mm}] {
+    };
+\end{tikzpicture}
+
+% \begin{tikzpicture}[every circle node/.style=draw]
+%     \graph[edge quotes={fill=white,inner sep=1mm}] {
+%     };
+% \end{tikzpicture}
 \end{enumerate}
 
 \end{document}
