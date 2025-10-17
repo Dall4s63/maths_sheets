@@ -29,7 +29,8 @@ are the sheets that feel more complete.
   These questions can also be used for graphing lines.
 - Shortest path and minimum spanning tree questions are in 
   `networks`, currently as `sheet.pdf`. These are missing 
-  worked examples.
+  worked examples. An explanation for Dijkstra's algorithm 
+  is in `explainer.pdf`.
 
 ## Planned Sheet Ideas
 
