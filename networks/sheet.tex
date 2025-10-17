@@ -153,7 +153,8 @@ the shortest path. In our new algorithm we will walk along the
 shortest edge leading out from the node we are currently at, that takes 
 us to a node we have yet to visit. This algorithm will likely work for 
 many graphs, but can you think of an example graph where this algorithm 
-would not work?
+would work? and a graph where it would not?
+
 
 % \begin{tikzpicture}[every circle node/.style=draw]
 %     \graph[edge quotes={fill=white,inner sep=1mm}] {
@@ -271,16 +272,35 @@ would not work?
     \end{tikzpicture}
     \end{enumerate}
 
-\item A simple graph for which this algorithm doesn't work is the 
-following graph if we want to find the 
+\item A simple graph for which this algorithm does work is the 
+following graph if we want to find the shortest path from A to D.
 
 \begin{tikzpicture}[every circle node/.style=draw]
     \node (A) at (0, 2) [circle] {A};
     \node (B) at (2, 4) [circle] {B};
     \node (C) at (2, 0) [circle] {C};
+    \node (D) at (4, 2) [circle] {D};
     \graph[edge quotes={fill=white,inner sep=1mm}] {
+        (A) --["2"] (B) --["2"] (D);
+        (A) --["10"] (C) --["1"] (D);
     };
 \end{tikzpicture}
+
+A graph for which this algorithm would not might look like:
+
+\begin{tikzpicture}[every circle node/.style=draw]
+    \node (A) at (0, 2) [circle] {A};
+    \node (B) at (2, 4) [circle] {B};
+    \node (C) at (2, 0) [circle] {C};
+    \node (D) at (4, 2) [circle] {D};
+    \graph[edge quotes={fill=white,inner sep=1mm}] {
+        (A) --["1"] (B) --["99"] (D);
+        (A) --["10"] (C) --["1"] (D);
+    };
+\end{tikzpicture}
+
+Because first we would travel A \ra B, but now we are locked 
+into travelling along the edge from B \ra D with a weight of 99.
 
 % \begin{tikzpicture}[every circle node/.style=draw]
 %     \graph[edge quotes={fill=white,inner sep=1mm}] {
