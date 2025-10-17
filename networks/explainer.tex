@@ -1,0 +1,60 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage{worksheet}
+
+\usepackage{enumitem}
+
+\usepackage{tikz}
+\usetikzlibrary{graphs,graphdrawing,quotes}
+\usegdlibrary{layered,force}
+
+\newcommand{\ra}{$\to$ }
+
+\begin{document}
+
+\large
+\section*{Dijsktra's Algorithm}
+
+\begin{enumerate}
+\item Create two sets of nodes, the first is the set of visited nodes 
+and it will start empty, and the second is the set of unvisited nodes 
+which will initially contain all the nodes.
+\item Assign a distance to each node, for now the distance to the 
+start node is 0 and every other node is infinite.
+\item Select the node from the unvisited set with the lowest distance 
+to be the current node. \label{dl_start}
+\item For each edge that travels from the current node to an unvisited 
+node, calculate the distance of travelling from the current node 
+to the new node via this edge. If this new distance is less than 
+the current distance to the new node, then replace the distance to 
+the new node. 
+\item Once all the edges leaving the current node to unvisited nodes 
+have been considered, remove the current node from the unvisited set 
+and add it to the visited set. \label{dl_end}
+\item Repeat steps \ref{dl_start} to \ref{dl_end} until all nodes have 
+been visited. Once this is done you can re-trace the path either by 
+inspection or by recording the previous node alongside the distance to 
+each node.
+\end{enumerate}
+
+\begin{tikzpicture}[every circle node/.style=draw,scale=1.5]
+    \node (A) at (0,4) [circle] {A};
+    \node (B) at (4,4) [circle] {B};
+    \node (C) at (8,4) [circle] {C};
+    \node (D) at (2,2) [circle] {D};
+    \node (E) at (6,2) [circle] {E};
+    \node (F) at (0,0) [circle] {F};
+    \node (G) at (4,0) [circle] {G};
+    \node (H) at (8,0) [circle] {H};
+    \graph[edge quotes={fill=white,inner sep=1mm}] {
+        % MST 
+        (A) --["2"] (D) --["4"] (B) --["3"] (C);
+        (B) --["3"] (G);
+        (F) --["1"] (G) --["1"] (E) --["3"] (H);
+        % other edges
+        (A) --["7"] (B) --["4"] (E) --["7"] (C) --["8"] (H);
+        (A) --["8"] (F) --["6"] (D) --["5"] (G) --["5"] (H);
+    };
+\end{tikzpicture}
+
+\end{document}
