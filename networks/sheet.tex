@@ -3,8 +3,7 @@
 \usepackage{worksheet}
 
 \usepackage{tikz}
-\usetikzlibrary{graphs,graphdrawing,quotes}
-\usegdlibrary{layered,force}
+\usetikzlibrary{graphs,quotes,shapes.geometric,arrows.meta}
 
 \newcommand{\ra}{$\to$ }
 
@@ -155,6 +154,27 @@ us to a node we have yet to visit. This algorithm will likely work for
 many graphs, but can you think of an example graph where this algorithm 
 would work? and a graph where it would not?
 
+\item The following graph is an abstract representation of the cost, due to 
+toll roads, of driving from one city to another.
+
+\begin{tikzpicture}[every ellipse node/.style=draw]
+    \node (A) at (0,3) [ellipse] {Newcastle};
+    \node (B) at (3,0) [ellipse] {Sydney};
+    \node (C) at (6,3) [ellipse] {Canberra};
+    \graph[edge quotes={fill=white,inner sep=1mm}] {
+        (A) --["10"] (B) --["8"] (C) --["20"] (A);
+    };
+\end{tikzpicture}
+
+For example the cost of travelling from Newcastle to Canberra 
+would be \$18 via Sydney or \$20 directly. In order to reduce 
+car through traffic in Sydney, the city plans to charge cars 
+\$6 when they enter the city. This would mean a trip from 
+Newcastle to Canberra via Sydney would now be \$24, and 
+similarly a trip from Newcastle to Sydney would be \$16. 
+Conversely, a trip from Sydney to Canberra should still only 
+cost \$8.  Can you design a graph that represents this new change 
+to the toll system? (You might need to use a directed graph.)
 
 % \begin{tikzpicture}[every circle node/.style=draw]
 %     \graph[edge quotes={fill=white,inner sep=1mm}] {
@@ -301,6 +321,23 @@ A graph for which this algorithm would not might look like:
 
 Because first we would travel A \ra B, but now we are locked 
 into travelling along the edge from B \ra D with a weight of 99.
+
+\item An example of using a directed graph to model this 
+
+\begin{tikzpicture}[every ellipse node/.style=draw]
+    \node (A) at (0,3) [ellipse] {Newcastle};
+    \node (B) at (3,-2) [ellipse] {Sydney};
+    \node (Be) at (3,0) [ellipse] {Syd.~Entry};
+    \node (C) at (6,3) [ellipse] {Canberra};
+    \graph[edge quotes={fill=white,inner sep=1mm}] {
+        (A) --["20",arrows={Stealth[length=3mm]-Stealth[length=3mm]}] (C);
+        (A) --["10",arrows={-Stealth[length=3mm]}] (Be);
+        (C) --["8",arrows={-Stealth[length=3mm]}] (Be);
+        (Be) --["6",arrows={-Stealth[length=3mm]}] (B);
+        (B) --["10",bend left,arrows={-Stealth[length=3mm]}] (A);
+        (B) --["8",bend right,arrows={-Stealth[length=3mm]}] (C);
+    };
+\end{tikzpicture}
 
 % \begin{tikzpicture}[every circle node/.style=draw]
 %     \graph[edge quotes={fill=white,inner sep=1mm}] {
