@@ -31,6 +31,9 @@ are the sheets that feel more complete.
   `networks`, currently as `sheet.pdf`. These are missing 
   worked examples. An explanation for Dijkstra's algorithm 
   is in `explainer.pdf`.
+- Some quadratic equations designed to be graphed by finding 
+  roots are in `quad_graph_roots`, currently only has 
+  monic quadratic equations. 
 
 ## Planned Sheet Ideas
 

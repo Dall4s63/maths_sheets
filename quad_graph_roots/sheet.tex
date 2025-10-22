@@ -2,49 +2,158 @@
 
 \usepackage{worksheet}
 
+\usepackage{tikz}
+
 \begin{document}
 
-\large
-\section*{Sheet Title}
+\section*{Graphing Quadratics using Roots}
 
 \subsection*{Example Problems}
 
-\textsc{Example 1}: 
+\textsc{Example 1}: Draw a graph of the quadratic equation $y = (x + 2)^2$, 
+and mark all important features.
 
-\textsc{Solution}: 
+\textsc{Solution}: First let's find the roots of the graph---when the graph 
+crosses the $x$ axis---by making $y = 0$, 
+$$0 = (x+2)^2,$$
+this will be true when $x = -2$. This means our graph will cross the 
+$x$ axis only once, and that for our quadratic this must be the turning 
+point. Then we want to find the $y$-intercept, this will occur when 
+$x = 0$,
+\begin{align*}
+y &= (0 + 2)^2, \\
+y &= 2^2, \\
+y &= 4.
+\end{align*}
+With this information we can plot the key points and sketch the graph,
+
+\begin{tikzpicture}[scale=0.5]
+    \draw[very thin,gray!25] (-10,-10) grid (10,10);
+    \draw[thick,stealth-stealth] (-10.5,0) -- (10.5,0) node[right] {$x$};
+    \draw[thick,stealth-stealth] (0,-10.5) -- (0,10.5) node[above] {$y$};
+    \fill (-2,0) circle (0.2) node[below] {$(-2,0)$};
+    \fill (0,4) circle (0.2) node[right] {$(0,4)$};
+    \draw[very thick,domain=-5.24:1.24,stealth-stealth] plot (\x,{(\x + 2)^2});
+\end{tikzpicture}
 
 \vspace{3mm}
 \hrule
 \vspace{3mm}
 
-\textsc{Example 2}: 
+\textsc{Example 2}: Draw a graph of the quadratic equation $y = x^2 + 2x - 8$
+and label all important features.
 
-\textsc{Solution}: 
+\textsc{Solution}: First we must determine where the roots of the graph will 
+be, and to do this we will factorise the quadratic expression. This gives 
+$$y = (x - 2)(x + 4),$$
+which tells us that the roots will occur at $x = 2$ and $x = -4$. Further 
+we can find the $y$-intercept by substituting $x=0$ to get
+\begin{align*}
+y &= 0^2 + 2\times 0 - 8 \\
+y &= -8.
+\end{align*}
+Finally we will find the turning point. The turning point of a parabola 
+always lies on its axis of symmetry. The axis of symmetry can be calculated 
+either by finding the halfway point between the roots $-4$ and 2---which would 
+be $-1$---or by using the formula $\frac{-b}{2}$ which is also $-1$. We can 
+then substitute the axis of symmetry as $x$ to find the $y$ coordinate of the 
+turning point.
+\begin{align*}
+y &= (-1)^2 + 2 \times -1 - 8, \\
+y &= 1 - 2 - 8, \\
+y &= -9.
+\end{align*}
+Then we can plot these points and sketch the graph.
+
+\begin{tikzpicture}[scale=0.5]
+    \draw[very thin,gray!25] (-10,-10) grid (10,10);
+    \draw[thick,stealth-stealth] (-10.5,0) -- (10.5,0) node[right] {$x$};
+    \draw[thick,stealth-stealth] (0,-10.5) -- (0,10.5) node[above] {$y$};
+    \fill (-4,0) circle (0.2) node[below left] {$(-4,0)$};
+    \fill (2,0) circle (0.2) node[below right] {$(2,0)$};
+    \fill (0,-8) circle (0.2) node[right] {$(0,-8)$};
+    \fill (-1,-9) circle (0.2) node[below left] {$(-1,-9)$};
+    \draw[very thick,domain=-5.42:3.42,stealth-stealth] plot (\x,{(\x - 2)*(\x + 4)});
+\end{tikzpicture}
 
 \vspace{3mm}
 \hrule
 \vspace{3mm}
 
-\textsc{Example 3}: 
+\textsc{Example 3}: Draw a graph of the quadratic equation $y = -x^2 + x + 6$
+and label all important features.
 
-\textsc{Solution}: 
+\textsc{Solution}: First we might notice that the coefficient of $x^2$ is 
+$-1$, which means our parabola will be concave down---the arms will point 
+downwards. To factorise the quadratic expression we will factor $-1$ out 
+of the trinomial expression then factorise it like any other quadratic,
+\begin{align*}
+y &= -(x^2 - x - 6), \\
+y &= -(x - 3)(x + 2). \\
+\end{align*}
+From this we can determine that the roots will be $x = -2$ and $x = 3$.
+We can find the $y$-intercept by substituting $x = 0$, 
+\begin{align*}
+y &= -0^2 + 0 + 6, \\
+y &= 6.
+\end{align*}
+Finally, the $x$ coordinate of the axis of symmetry will be $0.5$, so we 
+can find the $y$ coordinate of the turning point to be 
+\begin{align*}
+y &= -0.5^2 + 0.5 + 6, \\
+y &= 6.25.
+\end{align*}
+Then we can plot the key points and sketch the graph.
+
+\begin{tikzpicture}[scale=0.5]
+    \draw[very thin,gray!25] (-10,-10) grid (10,10);
+    \draw[thick,stealth-stealth] (-10.5,0) -- (10.5,0) node[right] {$x$};
+    \draw[thick,stealth-stealth] (0,-10.5) -- (0,10.5) node[above] {$y$};
+    \fill (-2,0) circle (0.2) node[below left] {$(-2,0)$};
+    \fill (3,0) circle (0.2) node[below right] {$(3,0)$};
+    \fill (0,6) circle (0.2) node[left] {$(0,6)$};
+    \fill (0.5,6.25) circle (0.2) node[above right] {$(0.5,6.25)$};
+    \draw[very thick,domain=-3.59:4.59,stealth-stealth] plot (\x,{-(\x - 3)*(\x + 2)});
+\end{tikzpicture}
 
 \newpage
 \subsection*{Question Bank}
 
-\textsc{Note}: Any questions where you get a decimal or fraction 
-as an answer can be rounded to 2 decimal places or left as 
-an exact value.
+% \textsc{Note}: Any questions where you get a decimal or fraction 
+% as an answer can be rounded to 2 decimal places or left as 
+% an exact value.
 
 \begin{enumerate}
-\item 
+\item For each of the following quadratic equations find their roots, 
+$y$-intercept, and turning point. Then graph the equation and label all 
+the important points.
+    \begin{multicols}{2}
+    \begin{enumerate}
+    \item $y = x^2$
+    \item $y = x^2 + 3x + 2$
+    \item $y = x^2 + 2x + 1$
+    \item $y = x^2 - 4x + 3$
+    \item $y = x^2 - 6x + 9$
+    \item $y = x^2 + 11x + 28$
+    \item $y = x^2 - 14x + 45$
+    \item $y = x^2 - 3x - 4$
+    \item $y = x^2 + 2x - 24$
+    \item $y = x^2 - x - 56$
+    \item $y = -x^2 - 9x - 20$
+    \item $y = -x^2 - 2x - 1$
+    \item $y = -x^2 + 11x - 24$
+    \item $y = -x^2 + 8x - 16$
+    \item $y = -x^2 + 2x + 35$
+    \item $y = -x^2 - 3x + 10$
+    \end{enumerate}
+    \end{multicols}
 \end{enumerate}
 
-\newpage
-\subsection*{Answers}
-
-\begin{enumerate}
-\item 
-\end{enumerate}
+% \newpage
+% \subsection*{Answers}
+% 
+% \begin{enumerate}
+% \item 
+% \end{enumerate}
 
 \end{document}
