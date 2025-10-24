@@ -1,9 +1,46 @@
-\documentclass[a4paper,12pt]{article}
+\documentclass[a4paper,10pt]{article}
 
 \usepackage{worksheet}
+
+\geometry{
+    top=15mm,
+    left=15mm,
+    height=267mm,
+    width=180mm,
+}
+
+\newcommand{\deriv}[3][ ]{\ensuremath\frac{d^{#1}#2}{d#3^{#1}}}
+\newcommand{\derivof}[2][ ]{\ensuremath\frac{d^{#1}}{d#2^{#1}}}
+
+\usepackage{parskip}
 
 \begin{document}
 
 \section*{Derivative Helper}
+
+\begin{multicols*}{2}
+
+{\large\textsc{Note on Notation}}
+
+There are a few ways that you are likely to see derivatives notated in NSW HSC maths 
+textbooks and exam papers. Just remember that these are not hard rules and you should 
+use the notation that fits with a question or feels most comfortable to you.
+
+When a situation involves functions you are likely to see derivatives as 
+$f'(x)$, $g'(x)$ and $f''(x)$, where the derivative is with respect to the input 
+variable---usually $x$. This apostrophe mark may also be used with variables 
+such as $y = 3x^2$ becomes $y' = 6x$. This mark may be pronounced ``prime'', 
+so you might say ``y prime'' to mean the first derivative of $y$.
+
+The other main form of notation is $\deriv{y}{x}$, which represents the derivative 
+of $y$ with respect to $x$. Usually this is seen when equations use $y$ or some 
+other variable such as $u = 3x$ gives $\deriv{u}{x} = 3$. Multiple derivatives are 
+represented with index notation as $\deriv[2]{u}{x}$ would be the second derivative of 
+$u$ with respect to $x$. A rarer use of this notation is $\derivof{x}$ which is an 
+operator that roughly means ``take the derivative of [expression] with respect to $x$''.
+For example, if we wanted the derivative of $2x^4$ we might write $\derivof{x}(2x^4) = 8x$.
+
+
+\end{multicols*}
 
 \end{document}
