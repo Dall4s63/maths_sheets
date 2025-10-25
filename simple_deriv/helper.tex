@@ -24,7 +24,8 @@
 
 There are a few ways that you are likely to see derivatives notated in NSW HSC maths 
 textbooks and exam papers. Just remember that these are not hard rules and you should 
-use the notation that fits with a question or feels most comfortable to you.
+use the notation that fits with a question or feels most comfortable to you while 
+communicating your intentions clearly.
 
 When a situation involves functions you are likely to see derivatives as 
 $f'(x)$, $g'(x)$ and $f''(x)$, where the derivative is with respect to the input 
@@ -40,7 +41,49 @@ $u$ with respect to $x$. A rarer use of this notation is $\derivof{x}$ which is 
 operator that roughly means ``take the derivative of [expression] with respect to $x$''.
 For example, if we wanted the derivative of $2x^4$ we might write $\derivof{x}(2x^4) = 8x$.
 
+{\large\rule{0em}{1.5em}\textsc{Constants and Coefficients}}
 
+The derivative of a constant expression is 0. For example, if $u = 10$ then 
+$\deriv{u}{x} = 0$. More generally for any constant $C$, $\derivof{x}(C) = 0$.
+
+Constant coefficients are a bit different, consider a function, $f$, that is 
+another function, $g$, multiplied by a constant, $C$. The derivative of 
+this function, $f(x) = Cg(x)$, would be 
+$$f'(x) = \derivof{x}(Cg'(x)) = C\derivof{x}(g(x)) = Cg'(x).$$
+Notice that the constant coefficient doesn't change, I like to imagine it's 
+just along for the ride. A more concrete example might be the function 
+$f(x) = 4x^3$, in this case 4 is the constant coefficient of the function 
+$g(x) = x^3$. So when we want to find $f'(x)$ we can apply the power 
+rule to $x^3$ then multiply by 4, which might look like 
+$$f'(x) = 4 \cdot \derivof{x}(x^3) = 4\cdot 3x^2 = 12x^2.$$
+
+{\large\rule{0em}{1.5em}\textsc{Sums and Subtraction}}
+
+When a function is made up of multiple expressions separated by 
+addition or subtraction---which is just funky addition---you can 
+find the derivative of the function, by finding the derivative of 
+each of the smaller parts. For example, if $f(x) = g_1(x) + g_2(x) - g_3(x)$
+then $f'(x) = g_1'(x) + g_2'(x) - g_3'(x)$. For a more concrete example 
+consider $f(x) = x^2 + 3x + 9$, to find the derivative we will 
+find the derivative of each part.
+\begin{align*}
+f'(x) &= \derivof{x}(x^2) + 3\cdot\derivof{x}(x) - \derivof{x}(9), \\
+&= 2x + 3\cdot 1 - 0, \\
+&= 2x + 3.
+\end{align*}
+
+\end{multicols*}
+
+\newpage
+\section*{Formulas}
+\begin{multicols*}{2}
+{\large\textsc{Power Rule}}
+
+The power rule is used for expressions of a variable that have a constant 
+exponent. For simple powers of $x$ use the rule 
+$$y = x^n \quad \deriv{y}{x} = nx^{n-1}.$$
+The more general formula uses the chain rule, and is
+$$y = (f(x))^n \quad \deriv{y}{x} = nf'(x)(f(x))^{n-1}.$$
 \end{multicols*}
 
 \end{document}
