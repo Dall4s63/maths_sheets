@@ -124,7 +124,44 @@ $$\deriv{y}{x} = f'(x)e^{f(x)},$$
 and for $y = \ln(f(x))$ you have,
 $$\deriv{y}{x} = \frac{f'(x)}{f(x)}.$$
 
+These forms are also useful when you have a base that is not $e$. 
+The helpful rules to remember are,
+$$a^x = e^{\ln(a)x} \mathrm{~and~} \log_a(x) = \frac{\ln(x)}{\ln(a)}.$$
+% For example, consider $y = 3^{4x}$, we can convert it into $y = e^{4\ln(3)x}$.
+% Then performing the derivative we get,
+% $$\deriv{y}{x} = 4\ln(3)e^{4\ln(3)x} = 4\ln(3)3^{4x}.$$
 
+{\large\textsc{Trigonometric Functions}}
+
+The trig functions have slightly strange derivatives. The basic versions are,
+\begin{align*}
+y = \sin(x) &\mathrm{~gives~} \deriv{y}{x} = \cos(x), \\
+y = \cos(x) &\mathrm{~gives~} \deriv{y}{x} = -\sin(x), \\
+y = \tan(x) &\mathrm{~gives~} \deriv{y}{x} = \sec^2(x), \\
+\end{align*}
+Notice that the derivatives of cos and sin eventually make a loop. 
+The chain rule versions of these are,
+\begin{align*}
+y = \sin(f(x)) &\mathrm{~gives~} \deriv{y}{x} = f'(x)\cos(f(x)), \\
+y = \cos(f(x)) &\mathrm{~gives~} \deriv{y}{x} = -f'(x)\sin(f(x)), \\
+y = \tan(f(x)) &\mathrm{~gives~} \deriv{y}{x} = f'(x)\sec^2(f(x)), \\
+\end{align*}
+
+{\large\textsc{Inverse Trig Functions}}
+
+These functions have the strangest derivative formulas. The simple versions 
+are 
+\begin{align*}
+y = \sin^{-1}(x) &\mathrm{~gives~} \deriv{y}{x} = \frac{1}{\sqrt{1-x^2}}, \\
+y = \cos^{-1}(x) &\mathrm{~gives~} \deriv{y}{x} = -\frac{1}{\sqrt{1-x^2}}, \\
+y = \tan^{-1}(x) &\mathrm{~gives~} \deriv{y}{x} = \frac{1}{1+x^2}, \\
+\end{align*}
+The chain rule versions are
+\begin{align*}
+y = \sin^{-1}(f(x)) &\mathrm{~gives~} \deriv{y}{x} = \frac{f'(x)}{\sqrt{1-[f(x)]^2}}, \\
+y = \cos^{-1}(f(x)) &\mathrm{~gives~} \deriv{y}{x} = -\frac{f'(x)}{\sqrt{1-[f(x)]^2}}, \\
+y = \tan^{-1}(f(x)) &\mathrm{~gives~} \deriv{y}{x} = \frac{f'(x)}{1+[f(x)]^2}, \\
+\end{align*}
 
 \end{multicols*}
 

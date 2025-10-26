@@ -4,25 +4,28 @@
 
 % Begin preamble
 
-\setlength{\parindent}{0pt}
-
-\renewcommand{\labelenumii}{\alph{enumii})}
-\renewcommand{\labelenumiii}{\roman{enumiii})}
-
-\everymath{\displaystyle}
-
+\RequirePackage{fontspec}
 %\usepackage[T1]{fontenc}
 \RequirePackage{geometry}
 \RequirePackage{amsmath}
 \RequirePackage{multicol}
-%\RequirePackage{stix}
-%\RequirePackage{kpfonts}
+\RequirePackage{unicode-math}
 
 \geometry{
     total={150mm,237mm},
     left=30mm,
     top=30mm,
 }
+
+\setmainfont{STIX Two Text}
+\setmathfont{STIX Two Math}
+
+\setlength{\parindent}{0pt}
+
+\renewcommand{\labelenumii}{\alph{enumii})}
+\renewcommand{\labelenumiii}{\roman{enumiii})}
+
+\everymath{\displaystyle}
 
 % End preamble
 
