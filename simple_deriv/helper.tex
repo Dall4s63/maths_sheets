@@ -44,7 +44,8 @@ For example, if we wanted the derivative of $2x^4$ we might write $\derivof{x}(2
 {\large\rule{0em}{1.5em}\textsc{Constants and Coefficients}}
 
 The derivative of a constant expression is 0. For example, if $u = 10$ then 
-$\deriv{u}{x} = 0$. More generally for any constant $C$, $\derivof{x}(C) = 0$.
+$\deriv{u}{x} = 0$. More generally for any constant $C$, 
+$$\derivof{x}(C) = 0.$$
 
 Constant coefficients are a bit different, consider a function, $f$, that is 
 another function, $g$, multiplied by a constant, $C$. The derivative of 
@@ -83,13 +84,48 @@ The power rule is used for expressions of a variable that have a constant
 exponent. For simple powers of $x$ use the rule 
 $$y = x^n \quad \deriv{y}{x} = nx^{n-1}.$$
 The more general formula uses the chain rule, and is
-$$y = (f(x))^n \quad \deriv{y}{x} = nf'(x)[f(x)]^{n-1}.$$
+$$y = f(x)^n \quad \deriv{y}{x} = nf'(x)[f(x)]^{n-1}.$$
 
 {\large\textsc{Product Rule}}
 
 The product rule is used when a function is a product of two expressions 
 in terms of $x$. The common formula is for when $y = uv$,
-$$\deriv{y}{x} = u\deriv{v}{x} + v\deriv{u}{v}.$$
+$$\deriv{y}{x} = u\deriv{v}{x} + v\deriv{u}{x}.$$
+
+{\large\textsc{Chain Rule}}
+
+The chain rule is used when finding the derivative of a function that 
+has another function as its input---also called function composition.
+You might see this written as, for $y = g(u)$ where $u = f(x)$, 
+$$\deriv{y}{x} = \deriv{y}{u} \times \deriv{u}{x}.$$
+This means to first do the derivative of the outside function with 
+respect to its input function, then multiply by the derivative of the 
+input function with respect to x. Another way of writing this would 
+be, if $y = g(f(x))$ then,
+$$y' = f'(x) \times g'(f(x))$$
+
+{\large\textsc{Quotient Rule}}
+
+This is used when one function is divided by another. Consider
+$y = \frac{u}{v}$, the derivative of $y$ would be 
+$$\deriv{y}{x} = \frac{v\deriv{u}{x} - u\deriv{v}{x}}{v^2}.$$
+When applying this formula it is important to make sure you 
+keep track of what functions are $u$ and $v$. Another option is to 
+convert $y = \frac{u}{v}$ into $y = uv^{-1}$ and use the power 
+and chain rules.
+
+{\large\textsc{Exponentials and Logarithms}}
+
+The derivative formulas for exponentials and logarithms tend to be 
+surprisingly simple. Here are the simple cases, 
+$$\derivof{x}(e^x) = e^x \textrm{~and~} \derivof{x}(\ln(x)) = \frac{1}{x}.$$
+More generally you will apply the chain rule, for $y = e^{f(x)}$, you have 
+$$\deriv{y}{x} = f'(x)e^{f(x)},$$
+and for $y = \ln(f(x))$ you have,
+$$\deriv{y}{x} = \frac{f'(x)}{f(x)}.$$
+
+
+
 \end{multicols*}
 
 \end{document}
