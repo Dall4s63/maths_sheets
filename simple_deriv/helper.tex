@@ -78,6 +78,15 @@ f'(x) &= \derivof{x}(x^2) + 3\cdot\derivof{x}(x) - \derivof{x}(9), \\
 \newpage
 \section*{Formulas}
 \begin{multicols*}{2}
+{\large\textsc{First Principles}}
+
+The first principles formula is effectively taking the rise over run 
+gradient of a very small section of a function. It looks like
+$$f'(x) = \lim_{h\to 0}\frac{f(x + h) - f(x)}{h}.$$
+To use to to find a derivative, you expand the function applications 
+and simplify until you are no longer dividing by $h$, at which point 
+you can substitute $h=0$ and you are done.
+
 {\large\textsc{Power Rule}}
 
 The power rule is used for expressions of a variable that have a constant 
