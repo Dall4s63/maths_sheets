@@ -1,0 +1,125 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage{worksheet}
+\usepackage{tikz}
+\usepackage{gensymb}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.markings}
+
+\begin{document}
+
+\section*{Standard 2 Trigonometry}
+
+\subsection*{Question Bank}
+
+\subsubsection*{Question 1}
+
+The triangle $FGH$ is shown below. The length of $FG$ is 
+47 and the length of $FH$ is 83. 
+
+The angle of elevation of 
+$G$ from $H$ is $64\degree$ and $\angle FGH$ is obtuse. 
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\tikzset{
+    dimline/.style = {|{Latex}-{Latex}|,dashed}
+}
+\draw (0,0) node[below] {$H$} -- (0,8.3) node[above] {$F$}
+    -- node[pos=0.5,anchor=south west] {47} (2,4) node[right] {$G$} -- cycle;
+\draw[dimline] (-1,0) -- node[pos=0.5,fill=white] {83} (-1,8.3);
+\draw (0,4) -- (2,4) (0,4.3) -| (0.3,4);
+\draw (-4,0) -- (4,0) (-0.3,0) |- (0,0.3);
+\end{tikzpicture}
+\end{figure}
+
+Find the length of $GH$ correct to two decimal places.
+
+\newpage
+\subsubsection*{Question 2}
+
+A strange window is constructed from two triangles, $PMN$ and 
+$PNQ$. The length of $PM$ is 8m and the length of $MN$ is 
+4m. The $\angle PMN$ is 110\degree.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[scale=0.5]
+\tikzset{
+    eqi/.pic = {
+        \draw (0,-0.15) -- (0,0.15);
+    }
+}
+\draw[fill=black!10] (-5,8.66) node[left] {$P$} -- 
+node[pos=0.5,anchor=south east] {8m} (2.5,11.66) node[above] {$M$} -- 
+node[pos=0.5,anchor=south west] {4m} (5,8.66) node[right] {$N$};
+\draw[fill=black!10,pos=0.5,sloped] (0,0) node[below] {$Q$} 
+--pic {eqi} (-5,8.66) --pic {eqi} (5,8.66) --pic {eqi} cycle;
+\draw (2.2,10.8) node {\footnotesize110\degree};
+\end{tikzpicture}
+\end{figure}
+The window is to be coated in a protective film that costs \$45/m$^2$,
+how much will it cost to coat the window?
+
+\newpage
+\subsection*{Answers}
+
+\subsubsection*{Question 1}
+
+Since $\angle FHG$ is complementary to 64\degree,
+
+$\angle FHG = 26\degree$.
+
+Find $\angle FGH$ using sine rule,
+
+\begin{equation*}
+\begin{split}
+\frac{\sin(\angle FGH)}{83} &= \frac{\sin(26\degree)}{47} \\
+\sin(\angle FGH) &= \frac{\sin(26\degree)}{47}\times 83 \\
+\angle FGH &\approx 50.7\degree
+\end{split}
+\end{equation*}
+
+But since $\angle FGH$ is obtuse,
+
+$\angle FGH \approx 180\degree - 50.7\degree = 129.3\degree$
+
+$\angle GFH = 180\degree - 129.3\degree - 26\degree = 24.7\degree$
+
+\begin{equation*}
+\begin{split}
+\frac{GH}{\sin(24.7\degree)} &= \frac{47}{\sin(26\degree)} \\
+GH &= \frac{47}{\sin(26\degree)}\times \sin(24.7\degree)\\
+&\approx 44.80
+\end{split}
+\end{equation*}
+
+\subsubsection*{Question 2}
+
+The area of $\triangle PMN$ is 
+
+\begin{equation*}
+A_{\triangle PMN} = \frac{1}{2}\times 4\times 8\times \sin(110\degree)
+\approx 15.04\mathrm{m}^2
+\end{equation*}
+
+The length of $PN$
+\begin{equation*}
+\begin{split}
+PN^2 &= 4^2 + 8^2 - 2\times 4\times 8\times\cos(110\degree) \\
+PN &= \sqrt{101.889...} \\
+&\approx 10.1\mathrm{m}
+\end{split}
+\end{equation*}
+
+The area of equilateral $\triangle PNQ$
+\begin{equation*}
+A_{\triangle PNQ} = \frac{1}{2}\times 10.1^2 \times \sin(60\degree)
+\approx 44.17\mathrm{m}^2
+\end{equation*}
+
+The cost is
+$$(15.04 + 44.17)\times 45 = \$2664.45$$
+
+\end{document}
