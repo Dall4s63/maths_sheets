@@ -1,0 +1,35 @@
+\NeedsTeXFormat{LaTeX2e}
+
+\ProvidesPackage{worksheet}[15/9/2025 Dylan's custom maths worksheet style]
+
+% Begin preamble
+
+\RequirePackage{fontspec}
+%\usepackage[T1]{fontenc}
+\RequirePackage{geometry}
+\RequirePackage{amsmath}
+\RequirePackage{multicol}
+\RequirePackage{unicode-math}
+
+\geometry{
+    total={150mm,237mm},
+    left=30mm,
+    top=30mm,
+}
+
+\setmainfont{STIX Two Text}
+\setmathfont{STIX Two Math}
+
+\setlength{\parindent}{0pt}
+
+\renewcommand{\labelenumii}{\alph{enumii})}
+\renewcommand{\labelenumiii}{\roman{enumiii})}
+
+\newcommand{\spacer}{\rule[-0.75em]{0em}{2.5em}}
+\newcommand{\sspacer}{\rule[-0.5em]{0em}{2em}}
+
+\everymath{\displaystyle}
+
+% End preamble
+
+\endinput
