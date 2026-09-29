@@ -12,6 +12,30 @@
 
 \subsection*{Question Bank}
 
+\subsubsection*{Question X}
+
+A pole is being held up by two guy wires anchored at $A$ and 
+$C$. The write connecting $AT$ is 7m long, and the angle of 
+elevation of $T$ from $A$ is 40\degree. The angle of 
+depression of $C$ from $T$ is 25\degree.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[scale=0.7]
+\draw (5.36,0) +(0,0.3) -| +(0.3,0);
+\draw (0:0.4) arc[radius=0.4,start angle=0,delta angle=40] 
+node[pos=1,right] {\footnotesize40\degree};
+\draw (5.36,4.5) +(0:0.4) arc[radius=0.4,start angle=0, delta angle=-25]
+node[pos=1,right=0.4cm]{\footnotesize25\degree};
+\draw[dashed] (5.36,4.5) -- +(1,0);
+\draw (5.36,0) node[below]{$B$} -- (5.36,4.5) node[above]{$T$};
+\draw (0,0)node[below]{$A$} -- (15,0)node[below]{$C$} 
+-- (5.36,4.5) -- node[pos=0.5,above left]{7m} cycle;
+\end{tikzpicture}
+\end{figure}
+
+How far apart are $A$ and $C$?
+
 \subsubsection*{Question 1}
 
 The triangle $FGH$ is shown below. The length of $FG$ is 
