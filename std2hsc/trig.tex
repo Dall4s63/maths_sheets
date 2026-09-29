@@ -65,16 +65,36 @@ how much will it cost to coat the window?
 \newpage
 \subsubsection*{Question 3}
 
+When Ship 1 is location at position $A$ it determines that Ship
+2 is 10km away on a bearing of 260\degree~at point $B$. Then Ship 1 
+sails at a speed of 5km/hr on a bearing of 15\degree~for 3 hours,
+reaching the point $A'$. Then it made another measurement 
+and found that Ship 2 was 16km away on a bearing of 290\degree~at 
+point $B'$.
+
 \begin{figure}[h]
 \centering
 \begin{tikzpicture}[scale=0.5]
 \tikzset{
 }
 \draw (0,0) +(-2,0) -- +(2,0) +(0,-2) -- +(0,2);
-\draw (85:15) +(-2,0) -- +(2,0) +(0,-2) -- +(0,2);
-\draw (-170:10) -- (0:0) -- (85:15) -- +(170:16);
+\draw (75:15) +(-2,0) -- +(2,0) +(0,-2) -- +(0,2);
+\draw (0,0) +(90:0.3) arc[radius=0.3,start angle=90,delta angle=-260] 
+node[pos=0.5,below right] {\footnotesize260\degree};
+\draw (90:0.6) arc[radius=0.6,start angle=90,delta angle=-15];
+\draw (82.5:0.6) -- (-1,2) node[left]{\footnotesize015\degree};
+\draw (75:15) +(90:0.3) arc[radius=0.3,start angle=90,delta angle=-290]
+node[pos=0.6,below right]{\footnotesize290\degree};
+\draw (-170:10) node[left] {$B$} -- 
+node[pos=0.5,below=0.2cm] {10km} 
+(0:0) node[above right] {$A$} -- 
+(75:15) node[above right] {$A'$} -- node[pos=0.5,above=0.2cm]{16km}
++(170:16) node[left]{$B'$};
 \end{tikzpicture}
 \end{figure}
+
+How fast is Ship 2 moving? (Extension question is to find the 
+bearing Ship 2 is travelling on).
 
 
 \newpage
@@ -136,5 +156,67 @@ A_{\triangle PNQ} = \frac{1}{2}\times 10.1^2 \times \sin(60\degree)
 
 The cost is
 $$(15.04 + 44.17)\times 45 = \$2664.45$$
+
+\newpage
+\subsubsection*{Question 3}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[scale=0.3]
+\tikzset{
+}
+\draw (0,0) +(-2,0) -- +(2,0) +(0,-2) -- +(0,2);
+\draw (75:15) +(-2,0) -- +(2,0) +(0,-2) -- +(0,2);
+\draw (0,0) +(90:0.3) arc[radius=0.3,start angle=90,delta angle=-260] 
+node[pos=0.5,below right] {\footnotesize260\degree};
+\draw (90:0.6) arc[radius=0.6,start angle=90,delta angle=-15];
+\draw (82.5:0.6) -- (-1,2) node[left]{\footnotesize015\degree};
+\draw (75:15) +(90:0.3) arc[radius=0.3,start angle=90,delta angle=-290]
+node[pos=0.6,below right]{\footnotesize290\degree};
+\draw (-170:10) node[left] {$B$} -- 
+node[pos=0.5,below=0.2cm] {10km} 
+(0:0) node[above right] {$A$} -- 
+(75:15) node[above right] {$A'$} -- node[pos=0.5,above=0.2cm]{16km}
++(170:16) node[left]{$B'$};
+\draw[dashed] (-170:10) -- (75:15) +(170:16) -- (-170:10);
+\end{tikzpicture}
+\end{figure}
+
+The length of $AA'$ is $5\times 3=15$.
+
+Find the angle $\angle BAA'$, $360\degree - 260\degree + 15\degree
+= 115\degree$.
+
+Use the cosine rule to find the length of $A'B$,
+
+\begin{equation*}
+\begin{split}
+A'B &= \sqrt{10^2+15^2-2\times 10\times 15\times \cos(115\degree)} \\
+&\approx 21.26
+\end{split}
+\end{equation*}
+
+Find $\angle BA'A$ using cosine rule
+
+\begin{equation*}
+\begin{split}
+\angle BA'A &= \cos^{-1}\left(\frac{15^2+21.26^2-10^2}
+{2\times 15 \times 21.26}\right) \\
+&\approx 25.22\degree
+\end{split}
+\end{equation*}
+
+Find the angle of $B'A'B$ is $290\degree - 180\degree - 15\degree
+- 25.22\degree = 69.78\degree$
+
+Use the cosine rule to find $BB'$,
+\begin{equation*}
+\begin{split}
+B'B &= \sqrt{16^2+21.26^2-2\times 16\times 21.26\times \cos(69.78\degree)} \\
+&\approx 21.75
+\end{split}
+\end{equation*}
+
+The speed of Ship 2 is $21.75\div 3 = 7.25\mathrm{km/hr}$.
 
 \end{document}
