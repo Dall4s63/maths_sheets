@@ -6,16 +6,22 @@
 \usetikzlibrary{arrows.meta}
 \usetikzlibrary{decorations.markings}
 
+\newcounter{QCounter}
+\newcounter{ACounter}
+
+\def\qcnt{\stepcounter{QCounter}\arabic{QCounter}}
+\def\acnt{\stepcounter{ACounter}\arabic{ACounter}}
+
 \begin{document}
 
 \section*{Standard 2 Trigonometry}
 
 \subsection*{Question Bank}
 
-\subsubsection*{Question X}
+\subsubsection*{Question \qcnt}
 
 A pole is being held up by two guy wires anchored at $A$ and 
-$C$. The write connecting $AT$ is 7m long, and the angle of 
+$C$. The wire connecting $AT$ is 7m long, and the angle of 
 elevation of $T$ from $A$ is 40\degree. The angle of 
 depression of $C$ from $T$ is 25\degree.
 
@@ -36,7 +42,7 @@ node[pos=1,right=0.4cm]{\footnotesize25\degree};
 
 How far apart are $A$ and $C$?
 
-\subsubsection*{Question 1}
+\subsubsection*{Question \qcnt}
 
 The triangle $FGH$ is shown below. The length of $FG$ is 
 47 and the length of $FH$ is 83. 
@@ -61,7 +67,7 @@ $G$ from $H$ is $64\degree$ and $\angle FGH$ is obtuse.
 Find the length of $GH$ correct to two decimal places.
 
 \newpage
-\subsubsection*{Question 2}
+\subsubsection*{Question \qcnt}
 
 A strange window is constructed from two triangles, $PMN$ and 
 $PNQ$. The length of $PM$ is 8m and the length of $MN$ is 
@@ -87,7 +93,7 @@ The window is to be coated in a protective film that costs \$45/m$^2$,
 how much will it cost to coat the window?
 
 \newpage
-\subsubsection*{Question 3}
+\subsubsection*{Question \qcnt}
 
 When Ship 1 is location at position $A$ it determines that Ship
 2 is 10km away on a bearing of 260\degree~at point $B$. Then Ship 1 
@@ -124,7 +130,41 @@ bearing Ship 2 is travelling on).
 \newpage
 \subsection*{Answers}
 
-\subsubsection*{Question 1}
+\subsubsection*{Question \acnt}
+
+Calculate the length of $TB$,
+
+\begin{equation*}
+\begin{split}
+\sin(40\degree) &= \frac{TB}{7} \\
+TB &= \sin(40\degree) \times 7 \\
+&\approx 4.5
+\end{split}
+\end{equation*}
+
+Calculate the length of $AB$
+
+\begin{equation*}
+\begin{split}
+AB &= \cos(40\degree) \times 7 \\
+&\approx 5.36
+\end{split}
+\end{equation*}
+
+Calculate the length of $BC$ using $TB$, note that 
+$\angle TCB = 25\degree$,
+
+\begin{equation*}
+\begin{split}
+\tan(25\degree) &= \frac{4.5}{BC} \\
+BC &= \frac{4.5}{\tan(25\degree)} \\
+&\approx 9.65
+\end{split}
+\end{equation*}
+
+Final distance is $AB + BC \approx 5.36 + 9.65 = 15.01m$
+
+\subsubsection*{Question \acnt}
 
 Since $\angle FHG$ is complementary to 64\degree,
 
@@ -154,7 +194,7 @@ GH &= \frac{47}{\sin(26\degree)}\times \sin(24.7\degree)\\
 \end{split}
 \end{equation*}
 
-\subsubsection*{Question 2}
+\subsubsection*{Question \acnt}
 
 The area of $\triangle PMN$ is 
 
@@ -182,7 +222,7 @@ The cost is
 $$(15.04 + 44.17)\times 45 = \$2664.45$$
 
 \newpage
-\subsubsection*{Question 3}
+\subsubsection*{Question \acnt}
 
 \begin{figure}[h]
 \centering
