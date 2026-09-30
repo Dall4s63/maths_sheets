@@ -66,6 +66,33 @@ $G$ from $H$ is $64\degree$ and $\angle FGH$ is obtuse.
 
 Find the length of $GH$ correct to two decimal places.
 
+\subsubsection*{Question \qcnt}
+
+A hiker was at point $P$ and took a measurement of a landmark 
+$L$ that was 750m away on a bearing of 130\degree. Later when 
+they found themselves lost at $Q$, they took another measurement 
+of the landmark and found it was on a bearing of 200\degree and 
+1250m away.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[scale=0.5]
+\draw[radius=0.5,start angle=90] (140:7.5) +(-2,0) -- +(2,0) 
++(0,-2) -- +(0,2) +(90:0.5) arc[delta angle=-130]
+node[fill=white,pos=0.7,right=0.2cm]{\footnotesize130\degree}
+(70:12.5) +(-2,0) -- +(2,0) 
++(0,-2) -- +(0,2) +(90:0.5) arc[delta angle=-200]
+node[pos=0.6,below right]{\footnotesize200\degree};
+\draw (140:7.5)node[above left]{$P$} 
+--node[pos=0.5,below left]{750m} (0,0) node[below]{$L$} 
+--node[pos=0.5,below right]{1250m} (70:12.5) 
+node[above right] {$Q$} -- cycle;
+\end{tikzpicture}
+\end{figure}
+
+What bearing has the hiker been walking on, and how far have 
+they gone?
+
 \newpage
 \subsubsection*{Question \qcnt}
 
@@ -191,6 +218,28 @@ $\angle GFH = 180\degree - 129.3\degree - 26\degree = 24.7\degree$
 \frac{GH}{\sin(24.7\degree)} &= \frac{47}{\sin(26\degree)} \\
 GH &= \frac{47}{\sin(26\degree)}\times \sin(24.7\degree)\\
 &\approx 44.80
+\end{split}
+\end{equation*}
+
+\subsubsection*{Question \acnt}
+
+The $\angle PLQ = (180 - 130) + (200 - 180) = 70\degree$.
+
+Use cosine rule to find $PQ$,
+
+\begin{equation*}
+\begin{split}
+PQ &= \sqrt{750^2 + 1250^2 - 2\times 750\times 1250\times \cos(70\degree)} \\
+&\approx 1218\mathrm{m}
+\end{split}
+\end{equation*}
+
+Use sine or cosine rule to find $\angle QPL$, here I'll use 
+sine rule.
+
+\begin{equation*}
+\begin{split}
+\sin(\angle QPL) &= \frac{\sin(70\degree)}{1218}\times1250 \\
 \end{split}
 \end{equation*}
 
