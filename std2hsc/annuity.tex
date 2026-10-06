@@ -1,0 +1,237 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage{worksheet}
+\usepackage{tikz}
+\usepackage{gensymb}
+\usepackage{tabularx}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.markings}
+
+\newcounter{QCounter}
+\newcounter{SQCounter}[QCounter]
+\newcounter{ACounter}
+\newcounter{SACounter}[ACounter]
+
+\def\qcnt{\stepcounter{QCounter}\arabic{QCounter}}
+\def\sqcnt{\stepcounter{SQCounter}\alph{SQCounter}}
+
+\def\acnt{\stepcounter{ACounter}\arabic{ACounter}}
+\def\sacnt{\stepcounter{SACounter}\alph{SACounter}}
+
+\setlength{\tabcolsep}{4mm}
+
+\begin{document}
+
+\section*{Standard 2 Trigonometry}
+
+\subsection*{Question Bank}
+
+\subsubsection*{Question \qcnt}
+
+Victoria wants to help her friend Irene compare compound interest 
+options using a table that shows the future value interest factors 
+of a compound interest investment of \$1.
+
+\begin{figure}[h]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+& \multicolumn{4}{c|}{\emph{Rate}} \\
+\hline
+\emph{Period} & \emph{1\%} & \emph{2.5\%} & \emph{4\%} & \emph{5\%} \\
+\hline
+5 & 1.0510 & 1.1314 & 1.2167 & 1.2763 \\
+\hline
+10 & 1.1046 &  & 1.4802 & 1.6289 \\
+\hline
+20 & 1.2202 & 1.6386 & 2.1911 & 2.6533 \\
+\hline
+\end{tabular}
+\end{figure}
+
+\sqcnt) Victoria forgot to fill one of the entries in her table 
+before giving it to Irene, what factor should go in the blank 
+cell in the table?
+
+\sqcnt) Victoria is going to invest \$4000 in an account that pays 
+5\% p.a.~compounding every 6 months. Irene is going to invest \$4150
+in an account that pays 4\% p.a.~compounding quarterly. Who will 
+have more money in their account at the end of 5 years?
+
+\subsubsection*{Question \qcnt}
+
+A table showing the future value interest 
+factors of an annuity of \$1 is shown below.
+
+\begin{figure}[h]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+& \multicolumn{4}{c|}{\emph{Rate}} \\
+\hline
+\emph{Period} & \emph{0.05\%} & \emph{0.1\%} & \emph{0.2\%} & \emph{0.4\%} \\
+\hline
+135 & 139.6244 & 144.4596 & 154.8056 & 178.5399 \\
+\hline
+180 & 188.2993 & 197.1097 & 216.4071 & 262.8712 \\
+\hline
+270 & 288.9963 & 309.7877 & 357.5409 & 484.5857 \\
+\hline
+390 & 430.5035 & 476.6930 & 589.8868 & 936.0091 \\
+\hline
+\end{tabular}
+\end{figure}
+
+Cynthia is planning to save regularly and is comparing two different 
+saving schemes. Scheme A is to save \$1200 monthly in an account 
+that pays 2.4\% per annum compounding monthly. Scheme B is to save 
+\$500 fortnightly in an account that pays 2.6\% per annum compounding 
+fortnightly. Which scheme would have a higher future value after 15 
+years?
+
+\newpage
+\subsubsection*{Question \qcnt}
+
+A table showing the future value interest factors of an 
+annuity of \$1 is shown below.
+
+\begin{figure}[h]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+& \multicolumn{4}{c|}{\emph{Rate}} \\
+\hline
+\emph{Period} & \emph{0.001} & \emph{0.002} & \emph{0.003} & \emph{0.004} \\
+\hline
+60 & 61.8047 & 63.6809 & 65.6316 & 67.6602 \\
+\hline
+120 & 127.4292 & 135.4722 & 144.1857 & 153.6320 \\
+\hline
+180 & 197.1097 & 216.4071 & 238.2067 & 262.8712 \\
+\hline
+240 & 271.0967 & 307.6500 & 350.7400 & 401.6750 \\
+\hline
+\end{tabular}
+\end{figure}
+
+Agatha plans to save \$600000 by making monthly payments into 
+an account that pays 3.6\% interest per annum compounding monthly.
+
+\sqcnt) If she wants to save \$1710.67 each month, how many years 
+will it take her to achieve her goal?
+
+\sqcnt) Agatha decides that she wants to save the amount in 
+15 years, how much will she have to save each month to make 
+it happen?
+
+\subsubsection*{Question \qcnt}
+
+Below is a table showing the present value factor for an 
+annuity paying \$1.
+
+
+\begin{figure}[h]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+& \multicolumn{4}{c|}{\emph{Rate}} \\
+\hline
+\emph{Period} & \emph{0.001} & \emph{0.002} & \emph{0.003} & \emph{0.004} \\
+\hline
+60 & 58.2072 & 56.4866 & 54.8349 & 53.2489 \\
+\hline
+120 & 113.0264 & 106.5918 & 100.6492 & 95.1560 \\
+\hline
+180 & 164.6547 & 151.0364 & 138.9268 & 128.1370 \\
+\hline
+240 & 213.2778 & 190.4600 & 170.9076 & 154.0933 \\
+\hline
+300 & 259.0707 & 225.4297 & 197.6274 & 174.5210 \\
+\hline
+360 & 302.1982 & 256.4488 & 219.9517 & 190.5977 \\
+\hline
+\end{tabular}
+\end{figure}
+
+\sqcnt) Leona is to receive a pension payment of \$2400 per month 
+from an account that pays 2.4\% interest per annum compounded 
+monthly for 20 years. What would the present value of the plan 
+be if she were to receive a lump sum of money today?
+
+\sqcnt) Hannah takes a loan of \$60000 at an interest rate of 
+4.8\% per annum compounded monthly. She is going to make monthly 
+payments for 15 years, how much does she have to pay each month 
+to pay off the loan?
+
+\newpage
+\subsubsection*{Question \qcnt}
+
+Below is a table showing the present value factor for an 
+annuity paying \$1.
+
+\begin{figure}[h]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+& \multicolumn{4}{c|}{\emph{Rate}} \\
+\hline
+\emph{Period} & \emph{0.001} & \emph{0.002} & \emph{0.003} & \emph{0.004} \\
+\hline
+120 & 113.0264 & 106.5918 & 100.6492 & 95.1560 \\
+\hline
+130 & 121.8475 & 114.3741 & 107.5159 & 101.2156 \\
+\hline
+180 & 164.6547 & 151.0364 & 138.9268 & 128.1370 \\
+\hline
+240 & 213.2778 & 190.4600 & 170.9076 & 154.0933 \\
+\hline
+260 & 228.8482 & 202.5853 & 180.3528 & 161.4528 \\
+\hline
+300 & 259.0707 & 225.4297 & 197.6274 & 174.5210 \\
+\hline
+390 & 322.8112 & 270.6184 & 229.6963 & 197.3023 \\
+\hline
+\end{tabular}
+\end{figure}
+\newpage
+\subsection*{Answers}
+
+\subsubsection*{Question \acnt}
+
+\sacnt) Using the compound interest formula
+
+$$(1+0.025)^{10}\approx1.2801.$$
+
+\sacnt) Victoria's investment will use the table value 1.2801 
+so her final value will be $1.2801\times4000 = \$5120.40$.
+
+Irene's investment will use the table value 1.2202 so her 
+final value will be $1.2202\times4150 = \$5063.82$. 
+
+Hence Victoria will have more in her account at the end of 5 years.
+
+\subsubsection*{Question \acnt}
+
+For Scheme A, we need to use the factor 216.4071 giving a 
+future value of $216.4071\times 1200 = \$259688.52$.
+
+For Scheme B, use $476.6930\times 500 = \$238246.50$.
+
+So Scheme A would have a higher future value.
+
+\subsubsection*{Question \acnt}
+\sacnt) Doing $600000\div1710.67=350.73876...\approx350.7400$, 
+and referencing the table indicates that this would need 
+240 periods. Since she is saving monthly 240 periods is 20 years.
+
+\sacnt) 15 years is 180 monthly periods, and the table gives us 
+a factor of 238.2067. $600000\div238.2067=\$2518.82$ saved each 
+month.
+
+\subsubsection*{Question \acnt}
+
+\sacnt) The lump sum would be $2400\times 190.4600=\$457104$
+
+\sacnt) $60000\div128.1370 = \$458.25$ per month.
+
+\end{document}
