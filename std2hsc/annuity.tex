@@ -184,7 +184,7 @@ the 9 years?
 \subsubsection*{Question \qcnt}
 
 Below is a table showing the future value factor for an 
-annuity paying \$1.
+annuity of \$1.
 
 \begin{figure}[h]
 \centering
@@ -247,24 +247,39 @@ annuity paying \$1.
 \hline
 & \multicolumn{4}{c|}{\emph{Rate}} \\
 \hline
-\emph{Period} & \emph{0.001} & \emph{0.002} & \emph{0.003} & \emph{0.004} \\
+\emph{Period} & \emph{0.0025} & \emph{0.003} & \emph{0.0035} & \emph{0.004} \\
 \hline
-120 & 113.0264 & 106.5918 & 100.6492 & 95.1560 \\
+60 & 55.6524 & 54.8349 & 54.0339 & 53.2489 \\
 \hline
-130 & 121.8475 & 114.3741 & 107.5159 & 101.2156 \\
+120 & 103.5618 & 100.6492 & 97.8489 & 95.1560 \\
 \hline
-180 & 164.6547 & 151.0364 & 138.9268 & 128.1370 \\
+180 & 144.8055 & 138.9268 & 133.3777 & 128.1370 \\
 \hline
-240 & 213.2778 & 190.4600 & 170.9076 & 154.0933 \\
+240 & 180.3109 & 170.9076 & 162.1874 & 154.0933 \\
 \hline
-260 & 228.8482 & 202.5853 & 180.3528 & 161.4528 \\
-\hline
-300 & 259.0707 & 225.4297 & 197.6274 & 174.5210 \\
-\hline
-390 & 322.8112 & 270.6184 & 229.6963 & 197.3023 \\
+300 & 210.8765 & 197.6274 & 185.5486 & 174.5210 \\
 \hline
 \end{tabular}
 \end{figure}
+
+Felicity takes out a loan with an interest rate of 4.2\% per 
+annum compounded monthly. The payment plan is to pay \$1200 per 
+month for the first 10 years and then \$900 per month for the 
+next 15.
+
+\sqcnt) What is the loan value after the first 10 years? 
+
+\sqcnt) The original value of the loan would be the present value of 
+value at 10 years, since it has been compounding, plus the value of 
+the annuity being paid for the first 10 years. How much was 
+the original value of the loan?
+
+\sqcnt) An alternative method for calculating the original loan 
+amount might not make as much sense, but we can check that it gives 
+the same answer. Split the loan payments into a plan where we 
+pay \$900 for 25 years, and also pay \$300 for the first 10 years. 
+The original loan should be the sum of the present value of these 
+two annuities. How much is it using this method?
 
 \newpage
 \subsection*{Answers}
@@ -325,5 +340,50 @@ $$A_1 = 20000\left(1+\frac{0.022}{12}\right)^{4\times12} = \$21838.00$$
 Then she saves an extra \$5000, $\$21838+\$5000=\$26838$. So after 
 the next 5 years 
 $$A = 26838\left(1+\frac{0.028}{12}\right)^{5\times12} = \$30866.01$$
+
+\subsubsection*{Question \acnt}
+
+\sacnt) This will be a combination of a compound interest problem and 
+annuity problem. For the interest on the \$10000,
+$$A_c = 10000\left(1+\frac{0.036}{12}\right)^{18\times12}=\$19098.60.$$
+Then for the annuity, we need to use the table value 303.2867,
+$$A_a = 100\times303.2867 = 30328.67.$$
+The total amount in the account at the end of 18 years will be
+$$A = A_c + A_a = \$19098.60 + \$30328.67 = \$49427.27.$$
+
+\sacnt) The annuity present value is \$49427.27, and since it will pay 
+\$$x$ for 10 years we will use the factor 100.6492. 
+\begin{equation*}
+\begin{split}
+\$49427.27 &= x\times100.6492 \\
+\$49427.27\div100.6492 &= x \\
+\$491.08 &= x.
+\end{split}
+\end{equation*}
+
+\newpage
+\subsubsection*{Question \acnt}
+
+\sacnt) Use the present value factor 133.3777, 
+$$A_{10} = \$900\times133.3777 = \$120039.93.$$
+
+\sacnt) The present value of the amount left after 10 years $A_{10}$ 
+is given by the compound interest formula,
+$$A_a = A_{10}\div1.0035^{10\times12} = \$120039.93\div1.0035^{10\times12} 
+= \$78929.71.$$
+The present value of the annuity being paid for the first 10 years
+$$A_b = \$1200\times97.8489 = \$117418.68.$$
+The original value of the loan would be the sum of these present values,
+$$\$78929.71 + \$117418.68 = \$196348.39.$$
+
+\sacnt) The annuity of \$900 for 25 years would be 
+$$A_c = \$900\times 185.5486 = \$166993.74.$$
+The annuity of \$300 for 10 years would be 
+$$A_d = \$300\times 97.8489 = \$29354.67.$$
+The original present value of the loan should be the sum of the 
+two,
+$$\$166993.74 + \$29354.67 = \$196348.41.$$
+We can see this method also gets about the same amount, but might 
+be a bit more difficult to understand.
 
 \end{document}
