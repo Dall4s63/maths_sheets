@@ -1,0 +1,9 @@
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[rotate=0]
+\draw[very thick,-Stealth] (0,0) -- (##1:4);
+\draw[very thick,-Stealth] (0,0) -- (0:4);
+\draw (##1:1) arc[radius=1,start angle=##1,end angle=0];
+\path (##2:1.5) node{$##1\degree$};
+\end{tikzpicture}
+\end{figure}
