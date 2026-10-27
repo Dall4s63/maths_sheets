@@ -27,6 +27,8 @@ base_shapes = {
     },
 }
 
+print(loadfile("templates/simple_angle.lua")())
+
 print(base_shapes["angle"].default_angle)
 
 angle_test = {}
