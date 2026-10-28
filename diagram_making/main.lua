@@ -16,23 +16,22 @@ containing defaults and help information.
 --]]
 
 base_shapes = {
-    angle = {
-        mt = {
-            __index = function (table, key)
-                local d = base_shapes["angle"][string.format("default_%s",key)]
-                return d;
-            end
-        },
-        default_angle = 110,
-    },
+    -- angle = {
+    --     mt = {
+    --         __index = function (table, key)
+    --             local d = base_shapes["angle"][string.format("default_%s",key)]
+    --             return d;
+    --         end
+    --     },
+    --     default_angle = 110,
+    -- },
 }
 
-print(loadfile("templates/simple_angle.lua")())
+base_shapes.simple_angle = loadfile("templates/simple_angle/script.lua")()
 
-print(base_shapes["angle"].default_angle)
+angle_test = base_shapes.simple_angle.new()
 
-angle_test = {}
-setmetatable(angle_test, base_shapes["angle"].mt)
+-- print(base_shapes["angle"].default_angle)
 
 str = io.read()
 
