@@ -12,10 +12,10 @@ local write = function(self)
         simple_angle.template = io.open(path.."template.tex"):read("a")
     end
 
-    local out = simple_angle.template:gsub("%%([%w_]+)%%", function(key)
+    local out = simple_angle.template:gsub("%%([%w_]+)_(%w)%%", function(key,format)
         print(self[key])
         print(key)
-        return string.format("%f", self[key]) end)
+        return string.format("%"..format, self[key]) end)
     return out
 end
 
