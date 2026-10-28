@@ -27,7 +27,7 @@ base_shapes = {
     -- },
 }
 
-base_shapes.simple_angle = loadfile("templates/simple_angle/script.lua")()
+base_shapes.simple_angle = loadfile("templates/simple_angle/script.lua")("templates/simple_angle/")
 
 angle_test = base_shapes.simple_angle.new()
 
@@ -38,6 +38,8 @@ str = io.read()
 if str == "angle" then
     print(angle_test.angle)
 end
+
+print(angle_test:write())
 
 print(str)
 
