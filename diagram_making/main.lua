@@ -63,7 +63,18 @@ while true do
             cur_scope_obj[command[2]] = command[3]
             print("set "..command[2])
         elseif command[1] == "write" then
+            local document_template = io.open("document_template.tex","r")
+            local figure_template = io.open("figure_template.tex","r")
+            local out = io.open("out/a.out","w")
+            local dt = document_template:read("a")
+            local ft = figure_template:read("a")
             print(cur_scope_obj:write())
+            local t = string.format(ft, cur_scope_obj:write())
+            t = dt:format(t)
+            out:write(t)
+            out:close()
+            figure_template:close()
+            document_template:close()
         end
     end
 end
