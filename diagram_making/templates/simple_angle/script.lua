@@ -13,8 +13,8 @@ local write = function(self)
     end
 
     local out = simple_angle.template:gsub("%%([%w_]+)_(%w)%%", function(key,format)
-        print(self[key])
-        print(key)
+        -- print(self[key])
+        -- print(key)
         return string.format("%"..format, self[key]) end)
     return out
 end
