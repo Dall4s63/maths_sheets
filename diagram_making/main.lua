@@ -32,6 +32,7 @@ base_shapes.simple_angle = loadfile("templates/simple_angle/script.lua")("templa
 -- 
 -- print(angle_test:write())
 
+cur_scope = nil
 cur_scope_str = "> "
 cur_scope_obj = nil
 
@@ -43,7 +44,7 @@ while true do
     end
 
     local command = {}
-    for w in str:gmatch("[%w._]+") do
+    for w in str:gmatch("[%g]+") do
         table.insert(command, w)
     end
 
@@ -55,8 +56,14 @@ while true do
     if cur_scope_obj == nil then
         if command[1] == "create" and base_shapes[command[2]] ~= nil then
             print(base_shapes[command[2]])
-            cur_scope_obj = base_shapes[command[2]].new()
+            cur_scope = base_shapes[command[2]]
+            cur_scope_obj = cur_scope.new()
             cur_scope_str = string.format("%s> ", command[2])
+        elseif command[1] == "help" then
+            for k, v in pairs(base_shapes) do
+                print(k)
+                print("\t"..v.main_help.."\n")
+            end
         end
     else
         if command[1] == "set" and command[2] ~= nil and command[3] ~= nil then
@@ -75,6 +82,12 @@ while true do
             out:close()
             figure_template:close()
             document_template:close()
+        elseif command[1] == "help" then
+            for k, v in pairs(cur_scope.helps) do
+                print(k)
+                print("\t"..v)
+                print("")
+            end
         end
     end
 end
