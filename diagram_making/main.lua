@@ -24,9 +24,21 @@ Simple command language:
  - write -> write the current object.
 --]]
 
+lfs = require("lfs")
+
 base_shapes = {}
 
-base_shapes.simple_angle = loadfile("templates/simple_angle/script.lua")("templates/simple_angle/")
+for s in lfs.dir("templates") do
+    if s == "." or s == ".." then
+        goto continue
+    end
+    local p = "templates/"..s.."/"
+    print(p.."script.lua")
+    base_shapes[s] = loadfile(p.."script.lua")(p)
+    ::continue::
+end
+
+-- base_shapes.simple_angle = loadfile("templates/simple_angle/script.lua")("templates/simple_angle/")
 
 -- angle_test = base_shapes.simple_angle.new()
 -- 
