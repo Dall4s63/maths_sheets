@@ -10,7 +10,7 @@ local Document = {
         local dt = document_template:read("a")
         local ft = figure_template:read("a")
         local t = "%s"
-        for _, shape in self.shapes do 
+        for _, shape in pairs(self.shapes) do 
             print(cur_scope_obj:write())
             local fig = ft:format(shape:write()).."%s\n"
             t = t:format(t, fig)
