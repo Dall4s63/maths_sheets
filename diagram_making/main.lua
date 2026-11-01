@@ -38,12 +38,6 @@ for s in lfs.dir("templates") do
     ::continue::
 end
 
--- base_shapes.simple_angle = loadfile("templates/simple_angle/script.lua")("templates/simple_angle/")
-
--- angle_test = base_shapes.simple_angle.new()
--- 
--- print(angle_test:write())
-
 cur_scope = nil
 cur_scope_str = "> "
 cur_scope_obj = nil
