@@ -22,6 +22,24 @@ Simple command language:
  it provides the help menu for the current shape.
  - set -> used for setting values in the scoped mode.
  - write -> write the current object.
+
+New Idea: Context dependent commands.
+
+General (always available):
+ - quit/exit/q
+ - focus name/home: change focus context.
+ - help [figs/options]: gives context command help or list of figures. 
+ - create fig/doc [name]: creates a new figure/document.
+ - write pdf/svg [name]: writes the current scope/provided object.
+                         might fail in home scope without provided name.
+ - list: lists the available documents.
+
+Document Scope:
+ - list: list the figures in the document.
+
+Figure Scope:
+ - set option value: set an option on the current figure.
+
 --]]
 
 lfs = require("lfs")
