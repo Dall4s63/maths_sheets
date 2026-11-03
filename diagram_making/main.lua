@@ -70,6 +70,7 @@ function handle_command(state)
 end
 
 state = {
+    base_figures = {},
     documents = {},
     focus = {
         obj = nil,
@@ -77,15 +78,13 @@ state = {
     }
 }
 
-base_shapes = {}
-
 for s in lfs.dir("templates") do
     if s == "." or s == ".." then
         goto continue
     end
     local p = "templates/"..s.."/"
     print(p.."script.lua")
-    base_shapes[s] = loadfile(p.."script.lua")(p)
+    state.base_figures[s] = loadfile(p.."script.lua")(p)
     ::continue::
 end
 
