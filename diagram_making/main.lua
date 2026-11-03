@@ -44,6 +44,39 @@ Figure Scope:
 
 lfs = require("lfs")
 
+general_commands = {
+    quit = function (cstring, state)
+        return true
+    end,
+    q = function (cstring, state)
+        return true
+    end,
+    exit = function (cstring, state)
+        return true
+    end,
+}
+
+function handle_command(state)
+    local str = io.read()
+    if str == nil then 
+        return true
+    end
+    local command = str:match("[%w_]+"):lower()
+    if general_commands[command] == nil then
+        -- TODO error handling
+        return true
+    end
+    return general_commands[command](str, state)
+end
+
+state = {
+    documents = {},
+    focus = {
+        obj = nil,
+        str = "> "
+    }
+}
+
 base_shapes = {}
 
 for s in lfs.dir("templates") do
