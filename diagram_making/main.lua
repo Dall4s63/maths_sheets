@@ -42,16 +42,17 @@ Figure Scope:
 
 --]]
 
+docs = require("docs")
 lfs = require("lfs")
 
 general_commands = {
-    quit = function (cstring, state)
+    quit = function (cmd, state)
         return true
     end,
-    q = function (cstring, state)
+    q = function (cmd, state)
         return true
     end,
-    exit = function (cstring, state)
+    exit = function (cmd, state)
         return true
     end,
 }
