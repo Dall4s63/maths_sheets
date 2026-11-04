@@ -43,6 +43,7 @@ Figure Scope:
 --]]
 
 docs = require("docs")
+fig_loader = require("figure_loader")
 lfs = require("lfs")
 
 general_commands = {
@@ -85,7 +86,8 @@ for s in lfs.dir("templates") do
     end
     local p = "templates/"..s.."/"
     print(p.."script.lua")
-    state.base_figures[s] = loadfile(p.."script.lua")(p)
+    local func = loadfile(p.."script.lua")
+    state.base_figures[s] = fig_loader(func, p)
     ::continue::
 end
 
