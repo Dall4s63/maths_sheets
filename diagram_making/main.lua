@@ -56,9 +56,12 @@ general_commands = {
     exit = function (cmd, state)
         return true
     end,
+    create = function (cmd, state)
+    end,
 }
 
 function handle_command(state)
+    io.write(state.focus.str)
     local str = io.read()
     if str == nil then 
         return true
@@ -66,7 +69,7 @@ function handle_command(state)
     local command = str:match("[%w_]+"):lower()
     if general_commands[command] == nil then
         -- TODO error handling
-        return true
+        return false 
     end
     return general_commands[command](str, state)
 end
@@ -87,67 +90,70 @@ for s in lfs.dir("templates") do
     local p = "templates/"..s.."/"
     print(p.."script.lua")
     local func = loadfile(p.."script.lua")
-    state.base_figures[s] = fig_loader(func, p)
+    state.base_figures[s] = fig_loader.setup(func, p)
     ::continue::
 end
 
-cur_scope = nil
-cur_scope_str = "> "
-cur_scope_obj = nil
-
-while true do
-    io.write(cur_scope_str)
-    str = io.read()
-    if str == nil then
-        break
-    end
-
-    local command = {}
-    for w in str:gmatch("[%g]+") do
-        table.insert(command, w)
-    end
-
-    if command[1] == "exit" or command[1] == "q" or command[1] == "quit" then
-        -- TODO maybe have an unsaved changes warning?
-        break
-    end
-    
-    if cur_scope_obj == nil then
-        if command[1] == "create" and base_shapes[command[2]] ~= nil then
-            print(base_shapes[command[2]])
-            cur_scope = base_shapes[command[2]]
-            cur_scope_obj = cur_scope.new()
-            cur_scope_str = string.format("%s> ", command[2])
-        elseif command[1] == "help" then
-            for k, v in pairs(base_shapes) do
-                print(k)
-                print("\t"..v.main_help.."\n")
-            end
-        end
-    else
-        if command[1] == "set" and command[2] ~= nil and command[3] ~= nil then
-            cur_scope_obj[command[2]] = command[3]
-            print("set "..command[2])
-        elseif command[1] == "write" then
-            local document_template = io.open("document_template.tex","r")
-            local figure_template = io.open("figure_template.tex","r")
-            local out = io.open("out/a.out","w")
-            local dt = document_template:read("a")
-            local ft = figure_template:read("a")
-            print(cur_scope_obj:write())
-            local t = string.format(ft, cur_scope_obj:write())
-            t = dt:format(t)
-            out:write(t)
-            out:close()
-            figure_template:close()
-            document_template:close()
-        elseif command[1] == "help" then
-            for k, v in pairs(cur_scope.helps) do
-                print(k)
-                print("\t"..v)
-                print("")
-            end
-        end
-    end
+while not handle_command(state) do
 end
+
+-- cur_scope = nil
+-- cur_scope_str = "> "
+-- cur_scope_obj = nil
+-- 
+-- while true do
+--     io.write(cur_scope_str)
+--     str = io.read()
+--     if str == nil then
+--         break
+--     end
+-- 
+--     local command = {}
+--     for w in str:gmatch("[%g]+") do
+--         table.insert(command, w)
+--     end
+-- 
+--     if command[1] == "exit" or command[1] == "q" or command[1] == "quit" then
+--         -- TODO maybe have an unsaved changes warning?
+--         break
+--     end
+--     
+--     if cur_scope_obj == nil then
+--         if command[1] == "create" and base_shapes[command[2]] ~= nil then
+--             print(base_shapes[command[2]])
+--             cur_scope = base_shapes[command[2]]
+--             cur_scope_obj = cur_scope.new()
+--             cur_scope_str = string.format("%s> ", command[2])
+--         elseif command[1] == "help" then
+--             for k, v in pairs(base_shapes) do
+--                 print(k)
+--                 print("\t"..v.main_help.."\n")
+--             end
+--         end
+--     else
+--         if command[1] == "set" and command[2] ~= nil and command[3] ~= nil then
+--             cur_scope_obj[command[2]] = command[3]
+--             print("set "..command[2])
+--         elseif command[1] == "write" then
+--             local document_template = io.open("document_template.tex","r")
+--             local figure_template = io.open("figure_template.tex","r")
+--             local out = io.open("out/a.out","w")
+--             local dt = document_template:read("a")
+--             local ft = figure_template:read("a")
+--             print(cur_scope_obj:write())
+--             local t = string.format(ft, cur_scope_obj:write())
+--             t = dt:format(t)
+--             out:write(t)
+--             out:close()
+--             figure_template:close()
+--             document_template:close()
+--         elseif command[1] == "help" then
+--             for k, v in pairs(cur_scope.helps) do
+--                 print(k)
+--                 print("\t"..v)
+--                 print("")
+--             end
+--         end
+--     end
+-- end
 
