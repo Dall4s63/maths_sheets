@@ -56,9 +56,47 @@ general_commands = {
     exit = function (cmd, state)
         return true
     end,
+
     create = function (cmd, state)
+        if cmd[2] ~= "doc" and cmd[2] ~= "fig" then
+            print("Expected command format: create doc/fig [name]")
+            return
+        end
+        if state.focus.doc == nil then
+        end
     end,
 }
+
+function command_parse(str)
+    local cmd = {}
+    while (str:len() > 0) do
+        local ai, aj, avalue = str:find("\"(.*)\"")
+        local bi, bj, bvalue = str:find("(%g+)")
+
+        if bi == nil then
+            return cmd
+        end
+
+        if ai == nil then
+            table.insert(cmd, bvalue)
+            str = str:sub(bj+1)
+            print(bvalue)
+            goto continue
+        end
+
+        if ai <= bi then
+            table.insert(cmd, avalue)
+            str = str:sub(aj+1)
+            print(avalue)
+        else
+            table.insert(cmd, bvalue)
+            str = str:sub(bj+1)
+            print(bvalue)
+        end
+        ::continue::
+    end
+    return cmd
+end
 
 function handle_command(state)
     io.write(state.focus.str)
@@ -66,19 +104,21 @@ function handle_command(state)
     if str == nil then 
         return true
     end
-    local command = str:match("[%w_]+"):lower()
-    if general_commands[command] == nil then
+    local cmd = command_parse(str)
+    if general_commands[cmd[1]] == nil then
         -- TODO error handling
         return false 
     end
-    return general_commands[command](str, state)
+    return general_commands[cmd[1]](cmd, state)
 end
 
 state = {
     base_figures = {},
+    num_new_docs = 0,
     documents = {},
     focus = {
-        obj = nil,
+        doc = nil,
+        fig = nil,
         str = "> "
     }
 }
