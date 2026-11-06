@@ -211,34 +211,6 @@ while not handle_command(state) do
     io.write("\n")
 end
 
--- cur_scope = nil
--- cur_scope_str = "> "
--- cur_scope_obj = nil
--- 
--- while true do
---     io.write(cur_scope_str)
---     str = io.read()
---     if str == nil then
---         break
---     end
--- 
---     local command = {}
---     for w in str:gmatch("[%g]+") do
---         table.insert(command, w)
---     end
--- 
---     if command[1] == "exit" or command[1] == "q" or command[1] == "quit" then
---         -- TODO maybe have an unsaved changes warning?
---         break
---     end
---     
---     if cur_scope_obj == nil then
---         if command[1] == "create" and base_shapes[command[2]] ~= nil then
---             print(base_shapes[command[2]])
---             cur_scope = base_shapes[command[2]]
---             cur_scope_obj = cur_scope.new()
---             cur_scope_str = string.format("%s> ", command[2])
---         elseif command[1] == "help" then
 --             for k, v in pairs(base_shapes) do
 --                 print(k)
 --                 print("\t"..v.main_help.."\n")
