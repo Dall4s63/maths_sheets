@@ -28,11 +28,12 @@ New Idea: Context dependent commands.
 General (always available):
  - quit/exit/q
  - focus name/home: change focus context.
+ - back: to up one focus level.
  - help [figs/options]: gives context command help or list of figures. 
  - create fig/doc [type(fig only)] [name]: creates a new figure/document.
  - write pdf/svg [name]: writes the current scope/provided object.
                          might fail in home scope without provided name.
- - list: lists the available documents.
+ - list: lists the available documents/figures.
 
 Document Scope:
  - list: list the figures in the document.
@@ -55,6 +56,30 @@ general_commands = {
     end,
     exit = function (cmd, state)
         return true
+    end,
+
+    list = function (cmd, state)
+        if state.focus.doc ~= nil then
+            print("Available figures:")
+            for s, _ in pairs(state.focus.doc.figs) do
+                print("\t"..s)
+            end
+        else
+            print("Available documents:")
+            for s, _ in pairs(state.docs) do
+                print("\t"..s)
+            end
+        end
+    end,
+
+    back = function (cmd, state)
+        if state.focus.fig ~= nil then
+            state.focus.fig = nil
+            state.focus.fig_name = nil
+        elseif state.focus.doc ~= nil then
+            state.focus.doc = nil
+            state.focus.doc_name = nil
+        end
     end,
 
     create = function (cmd, state)
@@ -98,12 +123,12 @@ general_commands = {
             end
             local base_name = name
             local counter = 2
-            while doc.shapes[name] ~= nil do
+            while doc.figs[name] ~= nil do
                 name = base_name..counter
                 counter = counter + 1
             end
-            doc.shapes[name] = state.base_figures[cmd[3]].new()
-            state.focus.fig = doc.shapes[name]
+            doc.figs[name] = state.base_figures[cmd[3]].new()
+            state.focus.fig = doc.figs[name]
             state.focus.fig_name = name
             return
         end
@@ -183,6 +208,7 @@ for s in lfs.dir("templates") do
 end
 
 while not handle_command(state) do
+    io.write("\n")
 end
 
 -- cur_scope = nil

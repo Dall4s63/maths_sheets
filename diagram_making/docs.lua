@@ -30,7 +30,7 @@ M.mt = {
 
 M.new = function ()
     local d = {
-        shapes = {},
+        figs = {},
     }
     setmetatable(d,M.mt)
     return d
