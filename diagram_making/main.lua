@@ -29,7 +29,7 @@ General (always available):
  - quit/exit/q
  - focus name/home: change focus context.
  - help [figs/options]: gives context command help or list of figures. 
- - create fig/doc [name]: creates a new figure/document.
+ - create fig/doc [type(fig only)] [name]: creates a new figure/document.
  - write pdf/svg [name]: writes the current scope/provided object.
                          might fail in home scope without provided name.
  - list: lists the available documents.
@@ -58,12 +58,57 @@ general_commands = {
     end,
 
     create = function (cmd, state)
-        if cmd[2] ~= "doc" and cmd[2] ~= "fig" then
-            print("Expected command format: create doc/fig [name]")
+        if cmd[2] == "doc" then
+            local name = cmd[3]
+            if cmd[3] == nil then
+                name = "new_document"
+            end
+            local base_name = name
+            local counter = 2
+            while state.docs[name] ~= nil do
+                name = base_name..counter
+                counter = counter + 1
+            end
+            state.docs[name] = docs.new()
+            print("Created new document \""..name.."\"")
+            state.focus.doc = state.docs[name]
+            state.focus.doc_name = name
             return
         end
-        if state.focus.doc == nil then
+
+        if cmd[2] == "fig" then
+            if state.focus.doc == nil then
+                print("Focus a document before creating a figure.")
+                return
+            end
+            if cmd[3] == nil then
+                print("Choose a figure type: create fig type [name]")
+                return
+            end
+
+            if state.base_figures[cmd[3]] == nil then
+                print("Unknown figure type \""..cmd[3].."\"")
+                return
+            end
+
+            local doc = state.focus.doc
+            local name = cmd[4]
+            if cmd[4] == nil then
+                name = "new_figure"
+            end
+            local base_name = name
+            local counter = 2
+            while doc.shapes[name] ~= nil do
+                name = base_name..counter
+                counter = counter + 1
+            end
+            doc.shapes[name] = state.base_figures[cmd[3]].new()
+            state.focus.fig = doc.shapes[name]
+            state.focus.fig_name = name
+            return
         end
+        print("Expected command format: create doc/(fig type) [name]")
+        return
     end,
 }
 
@@ -80,18 +125,15 @@ function command_parse(str)
         if ai == nil then
             table.insert(cmd, bvalue)
             str = str:sub(bj+1)
-            print(bvalue)
             goto continue
         end
 
         if ai <= bi then
             table.insert(cmd, avalue)
             str = str:sub(aj+1)
-            print(avalue)
         else
             table.insert(cmd, bvalue)
             str = str:sub(bj+1)
-            print(bvalue)
         end
         ::continue::
     end
@@ -99,7 +141,15 @@ function command_parse(str)
 end
 
 function handle_command(state)
-    io.write(state.focus.str)
+    -- io.write(state.focus.str)
+    if state.focus.doc_name ~= nil then
+        io.write(state.focus.doc_name)
+    end
+    if state.focus.fig_name ~= nil then
+        io.write("/")
+        io.write(state.focus.fig_name)
+    end
+    io.write("> ")
     local str = io.read()
     if str == nil then 
         return true
@@ -114,12 +164,10 @@ end
 
 state = {
     base_figures = {},
-    num_new_docs = 0,
-    documents = {},
+    docs = {},
     focus = {
         doc = nil,
         fig = nil,
-        str = "> "
     }
 }
 

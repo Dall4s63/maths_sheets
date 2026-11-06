@@ -32,11 +32,12 @@ M.setup = function(script_func, path)
         return out
     end
     fig_base.new = function()
-        local out = {}
+        local out = { }
         setmetatable(out, fig_base.mt)
         out.write = fig_base.write
         return out
     end
+    return fig_base
 end
 
 return M
