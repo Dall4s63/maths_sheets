@@ -47,11 +47,14 @@ docs = require("docs")
 fig_loader = require("figure_loader")
 lfs = require("lfs")
 
-general_commands_help = {
-    "quit/exit/q" = "Exit the application",
-    "list" = "List the available documents or figures based on context.",
-    "back" = "Return focus back a step.",
-    "create doc/fig" = "Create a new document/figure.",
+commands_help = {
+    ["quit/exit/q"] = "Exit the application",
+    ["list"] = "List the available documents or figures based on context.",
+    ["back"] = "Return focus back a step.",
+    ["create doc/fig"] = "Create a new document/figure.",
+    ["set parameter value"] = "(Figure focus only) Set parameter for currently focused figure.",
+    ["help figs"] = "List available base figures.",
+    ["help"] = "(Figure focus) list available parameters.",
 }
 
 general_commands = {
@@ -142,6 +145,22 @@ general_commands = {
         print("Expected command format: create doc/(fig type) [name]")
         return
     end,
+
+    help = function (cmd, state)
+        if cmd[2] == "figs" then
+            for k, v in pairs(state.base_figures) do
+                print(k)
+                print("\t"..v.main_help)
+                print("")
+            end
+            return
+        end
+        for k, v in pairs(commands_help) do
+            print(k)
+            print("\t"..v)
+            print("")
+        end
+    end,
 }
 
 figure_commands = {
@@ -150,6 +169,8 @@ figure_commands = {
             print("Usage: set parameter_name value")
             return
         end
+        -- TODO figure out type checking?
+        state.focus.fig[cmd[2]] = cmd[3]
     end,
     help = function (cmd, state)
         local fig_mt = getmetatable(state.focus.fig)
@@ -204,11 +225,18 @@ function handle_command(state)
         return true
     end
     local cmd = command_parse(str)
-    if general_commands[cmd[1]] == nil then
-        -- TODO error handling
-        return false 
+    local func
+    if state.focus.fig ~= nil then
+        func = figure_commands[cmd[1]]
     end
-    return general_commands[cmd[1]](cmd, state)
+    if func == nil then
+        func = general_commands[cmd[1]]
+    end
+    if func == nil then
+        -- TODO error handling
+        return
+    end
+    return func(cmd, state)
 end
 
 state = {

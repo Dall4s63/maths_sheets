@@ -49,7 +49,7 @@ M.setup = function(script_func, path)
     end
     fig_base.param = function(name, help, default)
         fig_base.helps[name] = help
-        fig_base.helps[name] = default
+        fig_base.defaults[name] = default
     end
     script_func(path, fig_base)
     fig_base.param = nil
