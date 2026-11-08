@@ -16,7 +16,9 @@ M.setup = function(script_func, path)
     local fig_base = {}
     fig_base.helps = {}
     fig_base.defaults = {}
-    fig_base.mt = {}
+    fig_base.mt = {
+        parent = fig_base,
+    }
     fig_base.mt.__index = function(table,key)
         if fig_base.index_preproc ~= nil then
             local v = fig_base.index_preproc(table,key)

@@ -47,6 +47,13 @@ docs = require("docs")
 fig_loader = require("figure_loader")
 lfs = require("lfs")
 
+general_commands_help = {
+    "quit/exit/q" = "Exit the application",
+    "list" = "List the available documents or figures based on context.",
+    "back" = "Return focus back a step.",
+    "create doc/fig" = "Create a new document/figure.",
+}
+
 general_commands = {
     quit = function (cmd, state)
         return true
@@ -134,6 +141,23 @@ general_commands = {
         end
         print("Expected command format: create doc/(fig type) [name]")
         return
+    end,
+}
+
+figure_commands = {
+    set = function (cmd, state)
+        if cmd[2] == nil or cmd[3] == nil then
+            print("Usage: set parameter_name value")
+            return
+        end
+    end,
+    help = function (cmd, state)
+        local fig_mt = getmetatable(state.focus.fig)
+        for k, v in pairs(fig_mt.parent.helps) do
+            print(k)
+            print("\t"..v)
+            print("")
+        end
     end,
 }
 
