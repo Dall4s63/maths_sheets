@@ -38,7 +38,7 @@ M.setup = function(script_func, path)
         local out = fig_base.template:gsub("%%([%w_]+)_(%w)%%", function(key,format)
             -- print(self[key])
             -- print(key)
-            return string.format("%"..format, self[key]) end)
+            return string.format("%"..format, obj[key]) end)
         return out
     end
     fig_base.new = function()

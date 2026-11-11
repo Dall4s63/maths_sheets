@@ -161,6 +161,41 @@ general_commands = {
             print("")
         end
     end,
+
+    export = function (cmd, state)
+        local format = "pdf"
+        if cmd[2] == nil then
+            print("Expected format: export document_name [svg]")
+            return
+        end
+        if state.docs[cmd[2]] == nil then
+            print("No document named: \""..cmd[2].."\"")
+            return
+        end
+        if cmd[3] == "svg" then
+            format = "svg"
+            print("svg export has not been implemented")
+            return
+        end
+        local document_template = io.open("document_template.tex","r")
+        local figure_template = io.open("figure_template.tex","r")
+        local out = io.open("out/a.tex","w")
+        local dt = document_template:read("a")
+        local ft = figure_template:read("a")
+        local content = "%s"
+        for p, v in pairs(state.docs[cmd[2]].figs) do
+            print(v)
+            local s = v:write()
+            print(s)
+            local t = ft:format(s).."\n%s"
+            content = content:format(t)
+        end
+        content = content:format("")
+        out:write(dt:format(content))
+        out:close()
+        figure_template:close()
+        document_template:close()
+    end,
 }
 
 figure_commands = {
