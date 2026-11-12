@@ -17,6 +17,7 @@ M.setup = function(script_func, path)
     fig_base.helps = {}
     fig_base.defaults = {}
     fig_base.types = {}
+    fig_base.sections = {}
     fig_base.mt = {
         parent = fig_base,
     }
@@ -38,12 +39,25 @@ M.setup = function(script_func, path)
 
         -- Secion processing: maybe just boolean
 
-        local out = fig_base.template:gsub("%%%[([%w_]+)%s*(.*)%]%%", function(key, text)
-            if obj[key] then
-                return text
-            end
-            return ""
-        end)
+        local out = fig_base.template
+
+        for sec, func in pairs(fig_base.sections) do
+            out = fig_base.template:gsub("%%%["..sec.."(.*)"..sec.."%]%%", function (text)
+                print(sec)
+                if func(obj) then
+                    print(text)
+                    return text
+                end
+                return ""
+            end)
+        end
+
+        -- local out = fig_base.template:gsub("%%%[([%w_]+)%s*(.*)%]%%", function(key, text)
+        --     if obj[key] then
+        --         return text
+        --     end
+        --     return ""
+        -- end)
 
         out = out:gsub("%%([%w_]+)_(%w)%%", function(key,format)
             -- print(self[key])
@@ -57,6 +71,13 @@ M.setup = function(script_func, path)
         out.write = fig_base.write
         return out
     end
+    fig_base.section = function(name, func)
+        if func and type(func) == "function" then
+            fig_base.sections[name] = func
+        else
+            fig_base.sections[name] = true
+        end
+    end
     fig_base.param = function(name, help, t, default)
         fig_base.helps[name] = help
         fig_base.types[name] = t
@@ -64,6 +85,7 @@ M.setup = function(script_func, path)
     end
     script_func(path, fig_base)
     fig_base.param = nil
+    fig_base.section = nil
     return fig_base
 end
 

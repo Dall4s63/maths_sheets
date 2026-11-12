@@ -6,6 +6,18 @@ base.param("label","Label placed in the angle.", "string", "\\theta")
 base.param("value_label","If this is true, then the value of the angle will be used as the label.", "boolean")
 base.param("num_arcs","Number of arc lines, up to 3", "number", 1)
 
+base.section("arc_1", function (self)
+    return self.num_arcs >= 1
+end)
+
+base.section("arc_2", function (self)
+    return self.num_arcs >= 2
+end)
+
+base.section("arc_3", function (self)
+    return self.num_arcs >= 3
+end)
+
 base.write_preproc = function (self)
     if self.value_label then
         self.label = tostring(math.floor(self.angle + 0.5)).."\\degree"

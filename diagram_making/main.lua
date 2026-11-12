@@ -204,8 +204,13 @@ figure_commands = {
             print("Usage: set parameter_name value")
             return
         end
-        -- TODO figure out type checking?
+        local fig_base = getmetatable(state.focus.fig).parent
+        if fig_base.helps[cmd[2]] == nil then
+            print("Figure has no parameter \""..cmd[2].."\"")
+            return
+        end
         state.focus.fig[cmd[2]] = cmd[3]
+        print("Set \""..cmd[2].."\" to \""..cmd[3].."\"")
     end,
     help = function (cmd, state)
         local fig_mt = getmetatable(state.focus.fig)
