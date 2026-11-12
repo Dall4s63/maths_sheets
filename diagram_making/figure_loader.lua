@@ -16,6 +16,7 @@ M.setup = function(script_func, path)
     local fig_base = {}
     fig_base.helps = {}
     fig_base.defaults = {}
+    fig_base.types = {}
     fig_base.mt = {
         parent = fig_base,
     }
@@ -35,7 +36,16 @@ M.setup = function(script_func, path)
             fig_base.write_preproc(obj)
         end
 
-        local out = fig_base.template:gsub("%%([%w_]+)_(%w)%%", function(key,format)
+        -- Secion processing: maybe just boolean
+
+        local out = fig_base.template:gsub("%%%[([%w_]+)%s*(.*)%]%%", function(key, text)
+            if obj[key] then
+                return text
+            end
+            return ""
+        end)
+
+        out = out:gsub("%%([%w_]+)_(%w)%%", function(key,format)
             -- print(self[key])
             -- print(key)
             return string.format("%"..format, obj[key]) end)
@@ -47,8 +57,9 @@ M.setup = function(script_func, path)
         out.write = fig_base.write
         return out
     end
-    fig_base.param = function(name, help, default)
+    fig_base.param = function(name, help, t, default)
         fig_base.helps[name] = help
+        fig_base.types[name] = t
         fig_base.defaults[name] = default
     end
     script_func(path, fig_base)

@@ -1,6 +1,19 @@
 \begin{tikzpicture}
-\draw[thick,pos=0.5] (0,0) -- node[left] {%left_label_s%}
-(0,%width_f%) -- node[above] {%top_label_s%}
-(%length_f%,%width_f%) -- node[right] {%right_label_s%}
-(%length_f%,0) -- node[below] {%bottom_label_s%} cycle;
+\draw[thick,pos=0.5] (0,0) -- 
+%[left_label
+node[left] {%left_label_s%}
+]%
+(0,%width_f%) -- 
+%[top_label
+node[above] {%top_label_s%}
+]%
+(%length_f%,%width_f%) -- 
+%[right_label
+node[right] {%right_label_s%}
+]%
+(%length_f%,0) -- 
+%[bottom_label
+node[below] {%bottom_label_s%} 
+]%
+cycle;
 \end{tikzpicture}
