@@ -42,10 +42,8 @@ M.setup = function(script_func, path)
         local out = fig_base.template
 
         for sec, func in pairs(fig_base.sections) do
-            out = fig_base.template:gsub("%%%["..sec.."(.*)"..sec.."%]%%", function (text)
-                print(sec)
+            out = out:gsub("%%%["..sec.."%s+(.*)"..sec.."%]%%%s+", function (text)
                 if func(obj) then
-                    print(text)
                     return text
                 end
                 return ""
