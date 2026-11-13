@@ -179,7 +179,7 @@ general_commands = {
         end
         local document_template = io.open("document_template.tex","r")
         local figure_template = io.open("figure_template.tex","r")
-        local out = io.open("out/a.tex","w")
+        local out = io.open("out/"..cmd[2]..".tex","w")
         local dt = document_template:read("a")
         local ft = figure_template:read("a")
         local content = "%s"
@@ -195,6 +195,11 @@ general_commands = {
         out:close()
         figure_template:close()
         document_template:close()
+        local dir = lfs.currentdir()
+        print(dir)
+        lfs.chdir(dir.."/out")
+        os.execute("xelatex "..cmd[2]..".tex")
+        lfs.chdir(dir)
     end,
 }
 
