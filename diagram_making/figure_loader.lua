@@ -37,8 +37,6 @@ M.setup = function(script_func, path)
             fig_base.write_preproc(obj)
         end
 
-        -- Secion processing: maybe just boolean
-
         local out = fig_base.template
 
         for sec, func in pairs(fig_base.sections) do
@@ -49,13 +47,6 @@ M.setup = function(script_func, path)
                 return ""
             end)
         end
-
-        -- local out = fig_base.template:gsub("%%%[([%w_]+)%s*(.*)%]%%", function(key, text)
-        --     if obj[key] then
-        --         return text
-        --     end
-        --     return ""
-        -- end)
 
         out = out:gsub("%%([%w_]+)_(%w)%%", function(key,format)
             -- print(self[key])
