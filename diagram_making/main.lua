@@ -57,6 +57,55 @@ commands_help = {
     ["help"] = "(Figure focus) list available parameters.",
 }
 
+local pdf_export = function(name, state)
+    local document_template = io.open("document_template.tex","r")
+    local figure_template = io.open("figure_template.tex","r")
+    local dt = document_template:read("a")
+    local ft = figure_template:read("a")
+    figure_template:close()
+    document_template:close()
+    local content = "%s"
+    for p, v in pairs(state.docs[name].figs) do
+        print(v)
+        local s = v:write()
+        print(s)
+        local t = ft:format(s).."\n%s"
+        content = content:format(t)
+    end
+    content = content:format("")
+    local out = io.open("out/"..name..".tex","w")
+    out:write(dt:format(content))
+    out:close()
+    local dir = lfs.currentdir()
+    -- print(dir)
+    lfs.chdir(dir.."/out")
+    os.execute("xelatex "..name..".tex")
+    lfs.chdir(dir)
+end
+
+local svg_export = function(name, state)
+    local document_template = io.open("document_template.tex","r")
+    local dt = document_template:read("a")
+    document_template:close()
+    local dir = lfs.currentdir()
+    -- print(dir)
+    
+    for fig_n, fig in pairs(state.docs[name].figs) do
+        local filename = name.."_"..fig_n
+        local out = io.open("out/"..filename..".tex","w")
+
+        local content = dt:format(fig:write())
+        out:write(content)
+
+        out:close()
+        lfs.chdir(dir.."/out")
+        os.execute("lualatex --output-format=dvi "..filename..".tex")
+        os.execute("dvisvgm "..filename..".dvi")
+        lfs.chdir(dir)
+    end
+
+end
+
 general_commands = {
     quit = function (cmd, state)
         return true
@@ -163,7 +212,6 @@ general_commands = {
     end,
 
     export = function (cmd, state)
-        local format = "pdf"
         if cmd[2] == nil then
             print("Expected format: export document_name [svg]")
             return
@@ -172,34 +220,15 @@ general_commands = {
             print("No document named: \""..cmd[2].."\"")
             return
         end
-        if cmd[3] == "svg" then
-            format = "svg"
-            print("svg export has not been implemented")
+        if cmd[3] ~= "svg" and cmd[3] ~= "pdf" then
+            print("Supported formats are \"svg\" and \"pdf\".")
             return
         end
-        local document_template = io.open("document_template.tex","r")
-        local figure_template = io.open("figure_template.tex","r")
-        local out = io.open("out/"..cmd[2]..".tex","w")
-        local dt = document_template:read("a")
-        local ft = figure_template:read("a")
-        local content = "%s"
-        for p, v in pairs(state.docs[cmd[2]].figs) do
-            print(v)
-            local s = v:write()
-            print(s)
-            local t = ft:format(s).."\n%s"
-            content = content:format(t)
+        if cmd[3] == "svg" then
+            svg_export(cmd[2], state)
+            return
         end
-        content = content:format("")
-        out:write(dt:format(content))
-        out:close()
-        figure_template:close()
-        document_template:close()
-        local dir = lfs.currentdir()
-        print(dir)
-        lfs.chdir(dir.."/out")
-        os.execute("xelatex "..cmd[2]..".tex")
-        lfs.chdir(dir)
+        pdf_export(cmd[2], state)
     end,
 }
 
