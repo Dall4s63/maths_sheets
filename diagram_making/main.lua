@@ -243,6 +243,35 @@ figure_commands = {
             print("Figure has no parameter \""..cmd[2].."\"")
             return
         end
+        local param_type = fig_base.types[cmd[2]]
+        if param_type == nil then
+            state.focus.fig[cmd[2]] = cmd[3]
+            -- TODO remove?
+            print("Warning no type for this parameter")
+            print("Set \""..cmd[2].."\" to \""..cmd[3].."\"")
+            return
+        end
+        if param_type == "number" then
+            local num = tonumber(cmd[3])
+            if num == nil then
+                print("Parameter \""..cmd[2].."\" expects a number.")
+                return
+            end
+            state.focus.fig[cmd[2]] = num
+        end
+        if param_type == "boolean" then
+            local v = cmd[3]:tolower()
+            if v == "false" then
+                state.focus.fig[cmd[2]] = false
+                return
+            end
+            if v == "true" then
+                state.focus.fig[cmd[2]] = false
+                return
+            end
+            print("Parameter \""..cmd[2].."\" expects true or false.")
+            return
+        end
         state.focus.fig[cmd[2]] = cmd[3]
         print("Set \""..cmd[2].."\" to \""..cmd[3].."\"")
     end,
