@@ -1,16 +1,16 @@
 \begin{tikzpicture}[rotate=0]
-\draw[very thick] (
-
-\draw[very thick,-Stealth] (0,0) -- (%angle_f%:4);
-\draw[very thick,-Stealth] (0,0) -- (0:4);
-%[arc_1
-\draw (%angle_f%:1) arc[radius=1,start angle=%angle_f%,end angle=0];
-arc_1]%
-%[arc_2
-\draw (%angle_f%:1.1) arc[radius=1,start angle=%angle_f%,end angle=0];
-arc_2]%
-%[arc_3
-\draw (%angle_f%:1.2) arc[radius=1,start angle=%angle_f%,end angle=0];
-arc_3]%
-\path (%half_angle_f%:0.5) node{$%label_s%$};
+\draw[very thick,pos=0.5] (0,0) --
+%[a_label
+node[below] {%a_label_s%}
+a_label]%
+(%a_f%,0) --
+%[c_label
+node[above right] {%c_label_s%}
+c_label]%
+(0,%b_f%) --
+%[b_label
+node[left] {%b_label_s%}
+b_label]%
+cycle;
+\draw (0.5,0) |- (0,0.5);
 \end{tikzpicture}
