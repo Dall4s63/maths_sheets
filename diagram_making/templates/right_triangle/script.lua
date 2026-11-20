@@ -19,4 +19,5 @@ base.param("b","The length of the height side (b).", "number", 3)
 base.param("a_label", "The label of the a side.", "string")
 base.param("b_label", "The label of the b side.", "string")
 base.param("c_label", "The label of the c side.", "string")
+base.param("right_angle_size","Side length of the right angle mark.","number",0.3)
 
