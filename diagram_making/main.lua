@@ -51,7 +51,7 @@ commands_help = {
     ["quit/exit/q"] = "Exit the application",
     ["list"] = "List the available documents or figures based on context.",
     ["back"] = "Return focus back a step.",
-    ["create doc/fig"] = "Create a new document/figure.",
+    ["new doc/fig"] = "Create a new document/figure.",
     ["set parameter value"] = "(Figure focus only) Set parameter for currently focused figure.",
     ["help figs"] = "List available base figures.",
     ["help"] = "(Figure focus) list available parameters.",
@@ -141,7 +141,7 @@ general_commands = {
         end
     end,
 
-    create = function (cmd, state)
+    new = function (cmd, state)
         if cmd[2] == "doc" then
             local name = cmd[3]
             if cmd[3] == nil then
@@ -166,7 +166,7 @@ general_commands = {
                 return
             end
             if cmd[3] == nil then
-                print("Choose a figure type: create fig type [name]")
+                print("Choose a figure type: new fig type [name]")
                 return
             end
 
@@ -191,7 +191,7 @@ general_commands = {
             state.focus.fig_name = name
             return
         end
-        print("Expected command format: create doc/(fig type) [name]")
+        print("Expected command format: new doc/(fig type) [name]")
         return
     end,
 
@@ -220,7 +220,7 @@ general_commands = {
             print("No document named: \""..cmd[2].."\"")
             return
         end
-        if cmd[3] ~= "svg" and cmd[3] ~= "pdf" then
+        if cmd[3] ~= nil and cmd[3] ~= "svg" and cmd[3] ~= "pdf" then
             print("Supported formats are \"svg\" and \"pdf\".")
             return
         end
