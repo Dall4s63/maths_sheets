@@ -258,6 +258,7 @@ figure_commands = {
                 return
             end
             state.focus.fig[cmd[2]] = num
+            return
         end
         if param_type == "boolean" then
             local v = cmd[3]:tolower()
